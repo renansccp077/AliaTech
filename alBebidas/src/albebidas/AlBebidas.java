@@ -5,6 +5,8 @@
  */
 package albebidas;
 
+import br.com.frames.telaLogin;
+
 /**
  *
  * @author Renan
@@ -16,6 +18,8 @@ public class AlBebidas {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        telaLogin tl = new telaLogin();
     }
     
 }
