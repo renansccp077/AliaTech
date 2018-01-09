@@ -11,41 +11,49 @@ package br.com.classes;
  */
 public class Cliente {
     private String nomeCliente;
-    private int cpfCliente;
+    private String cpfCliente;
     private String enderecoCliente;
+    private String telefoneCliente;
 
-    public Cliente(String nomeCliente, int cpfCliente, String enderecoCliente) {
+    public Cliente(String nomeCliente, String cpfCliente, String enderecoCliente, String telefoneCliente) {
         this.nomeCliente = nomeCliente;
         this.cpfCliente = cpfCliente;
         this.enderecoCliente = enderecoCliente;
-    }
-
-    public Cliente() {
+        this.telefoneCliente = telefoneCliente;
     }
 
     public String getNomeCliente() {
         return nomeCliente;
     }
 
-    public int getCpfCliente() {
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public String getCpfCliente() {
         return cpfCliente;
+    }
+
+    public void setCpfCliente(String cpfCliente) {
+        this.cpfCliente = cpfCliente;
     }
 
     public String getEnderecoCliente() {
         return enderecoCliente;
     }
 
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
-    }
-
-    public void setCpfCliente(int cpfCliente) {
-        this.cpfCliente = cpfCliente;
-    }
-
     public void setEnderecoCliente(String enderecoCliente) {
         this.enderecoCliente = enderecoCliente;
     }
+
+    public String getTelefoneCliente() {
+        return telefoneCliente;
+    }
+
+    public void setTelefoneCliente(String telefoneCliente) {
+        this.telefoneCliente = telefoneCliente;
+    }
+
     
     
 }
