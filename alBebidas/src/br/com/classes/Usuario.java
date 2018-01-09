@@ -13,8 +13,6 @@ public class Usuario {
     private String nomeUser;
     private String senha;
 
-
-
     public Usuario(String nomeUser, String senha) {
         this.nomeUser = nomeUser;
         this.senha = senha;
@@ -28,7 +26,6 @@ public class Usuario {
         return senha;
     }
 
-
     public void setNomeUser(String nomeUser) {
         this.nomeUser = nomeUser;
     }
@@ -37,5 +34,4 @@ public class Usuario {
         this.senha = senha;
     }
   
-    
 }
