@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package conexão;
+package br.com.connection;
 
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
@@ -19,12 +19,12 @@ import java.util.logging.Logger;
  */
 public class ConnectionFactory {
 
-    private final String DRIVER = "com.mysql.jdbc.Driver";
-    private final String URL = "jdbc:mysql://localhost:3306/AL_Bebidas";
-    private final String USER = "root";
-    private final String PASS = "root";
+    private static String DRIVER = "com.mysql.jdbc.Driver";
+    private static String URL = "jdbc:mysql://localhost:3306/AL_Bebidas";
+    private static String USER = "root";
+    private static String PASS = "root";
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         try {
             Class.forName(DRIVER);
 
