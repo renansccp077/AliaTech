@@ -66,6 +66,11 @@ public class telaLogin extends javax.swing.JFrame {
         });
 
         botaoEntrarLogin.setText("Entrar");
+        botaoEntrarLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEntrarLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelLayout = new javax.swing.GroupLayout(painel);
         painel.setLayout(painelLayout);
@@ -128,6 +133,14 @@ public class telaLogin extends javax.swing.JFrame {
     private void campoUsuarioLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoUsuarioLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoUsuarioLoginActionPerformed
+
+    private void botaoEntrarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarLoginActionPerformed
+        // TODO add your handling code here:
+        
+        telaInicial ti = new telaInicial();
+        setVisible(false);
+        ti.setVisible(true);
+    }//GEN-LAST:event_botaoEntrarLoginActionPerformed
 
     /**
      * @param args the command line arguments
