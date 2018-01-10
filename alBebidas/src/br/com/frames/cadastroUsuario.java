@@ -5,6 +5,10 @@
  */
 package br.com.frames;
 
+import br.com.DAO.UsuarioDAO;
+import br.com.classes.Usuario;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Sales Macedo
@@ -61,6 +65,11 @@ public class cadastroUsuario extends javax.swing.JFrame {
 
         botaoCadUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botaoCadUsuario.setText("Cadastrar");
+        botaoCadUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCadUsuarioActionPerformed(evt);
+            }
+        });
 
         botaoVoltarCadUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botaoVoltarCadUsuario.setText("Voltar");
@@ -131,6 +140,7 @@ public class cadastroUsuario extends javax.swing.JFrame {
 
     private void campoTextoCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoCadUsuarioActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_campoTextoCadUsuarioActionPerformed
 
     private void botaoVoltarCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarCadUsuarioActionPerformed
@@ -140,6 +150,21 @@ public class cadastroUsuario extends javax.swing.JFrame {
         setVisible(false);
         ti.setVisible(true);
     }//GEN-LAST:event_botaoVoltarCadUsuarioActionPerformed
+
+    private void botaoCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadUsuarioActionPerformed
+        // TODO add your handling code here:
+        UsuarioDAO dao = new UsuarioDAO();
+        Usuario u = new Usuario();
+        
+        u.setNomeUser(campoTextoCadUsuario.getText());
+        u.setSenha(campoSenhaCadUsuario.getText());
+        
+        if(u.cadastroUsuario()){
+            dao.create(u);
+        }else{
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuario, verifique os campos!");
+        }
+    }//GEN-LAST:event_botaoCadUsuarioActionPerformed
 
     /**
      * @param args the command line arguments

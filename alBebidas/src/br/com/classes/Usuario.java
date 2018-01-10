@@ -18,6 +18,11 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public Usuario() {
+    }
+    
+    
+
     public String getNomeUser() {
         return nomeUser;
     }
@@ -32,6 +37,10 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public boolean cadastroUsuario() {
+        return false;
     }
   
 }
