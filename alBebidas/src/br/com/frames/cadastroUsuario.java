@@ -50,14 +50,14 @@ public class cadastroUsuario extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Senha:");
 
-        campoTextoCadUsuario.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        campoTextoCadUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         campoTextoCadUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoTextoCadUsuarioActionPerformed(evt);
             }
         });
 
-        campoSenhaCadUsuario.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        campoSenhaCadUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         botaoCadUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botaoCadUsuario.setText("Cadastrar");

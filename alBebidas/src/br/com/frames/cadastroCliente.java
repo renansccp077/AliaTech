@@ -61,18 +61,18 @@ public class cadastroCliente extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Telefone: ");
 
-        campoCadNomeCliente.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        campoCadNomeCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        campoCadCpfCliente.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        campoCadCpfCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        campoCadEnderecoCliente.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        campoCadEnderecoCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         campoCadEnderecoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoCadEnderecoClienteActionPerformed(evt);
             }
         });
 
-        campoCadTelefoneCliente.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        campoCadTelefoneCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         botaoCadCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botaoCadCliente.setText("Cadastrar");
