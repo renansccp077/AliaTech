@@ -174,6 +174,9 @@
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoCadNomeClienteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="campoCadCpfCliente">
           <Properties>
@@ -206,6 +209,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Cadastrar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoCadClienteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botaoVoltarCadCliente">
           <Properties>

@@ -5,6 +5,8 @@
  */
 package br.com.frames;
 
+import br.com.classes.Cliente;
+
 /**
  *
  * @author Sales Macedo
@@ -62,6 +64,11 @@ public class cadastroCliente extends javax.swing.JFrame {
         jLabel5.setText("Telefone: ");
 
         campoCadNomeCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        campoCadNomeCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoCadNomeClienteActionPerformed(evt);
+            }
+        });
 
         campoCadCpfCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
@@ -76,6 +83,11 @@ public class cadastroCliente extends javax.swing.JFrame {
 
         botaoCadCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botaoCadCliente.setText("Cadastrar");
+        botaoCadCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCadClienteActionPerformed(evt);
+            }
+        });
 
         botaoVoltarCadCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botaoVoltarCadCliente.setText("Voltar");
@@ -176,6 +188,22 @@ public class cadastroCliente extends javax.swing.JFrame {
         ti.setVisible(true);
     }//GEN-LAST:event_botaoVoltarCadClienteActionPerformed
 
+    private void campoCadNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCadNomeClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoCadNomeClienteActionPerformed
+
+    private void botaoCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadClienteActionPerformed
+        // TODO add your handling code here:
+        Cliente cliente = new Cliente();
+        cliente.setNomeCliente(campoCadNomeCliente.getText());
+        cliente.setCpfCliente(campoCadCpfCliente.getText());
+        cliente.setEnderecoCliente(campoCadEnderecoCliente.getText());
+        cliente.setTelefoneCliente(campoCadTelefoneCliente.getText());
+        
+        
+        
+    }//GEN-LAST:event_botaoCadClienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -187,7 +215,7 @@ public class cadastroCliente extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

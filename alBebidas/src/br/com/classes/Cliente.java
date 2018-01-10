@@ -22,6 +22,11 @@ public class Cliente {
         this.telefoneCliente = telefoneCliente;
     }
 
+    public Cliente() {
+    }
+    
+    
+
     public String getNomeCliente() {
         return nomeCliente;
     }
@@ -54,6 +59,8 @@ public class Cliente {
         this.telefoneCliente = telefoneCliente;
     }
 
-    
+    public void cadastrarCliente(){
+        
+    }
     
 }
