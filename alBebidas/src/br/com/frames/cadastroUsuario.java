@@ -34,54 +34,73 @@ public class cadastroUsuario extends javax.swing.JFrame {
         campoTextoCadUsuario = new javax.swing.JTextField();
         campoSenhaCadUsuario = new javax.swing.JPasswordField();
         botaoCadUsuario = new javax.swing.JButton();
+        botaoVoltarCadUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de usuário");
 
+        jPanel1.setPreferredSize(new java.awt.Dimension(1366, 768));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Cadastro de Usuário");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Nome");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Senha:");
 
+        campoTextoCadUsuario.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         campoTextoCadUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoTextoCadUsuarioActionPerformed(evt);
             }
         });
 
+        campoSenhaCadUsuario.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+
+        botaoCadUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botaoCadUsuario.setText("Cadastrar");
+
+        botaoVoltarCadUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        botaoVoltarCadUsuario.setText("Voltar");
+        botaoVoltarCadUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoVoltarCadUsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(157, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(145, 145, 145))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(483, 483, 483)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(497, 497, 497)
+                        .addComponent(botaoVoltarCadUsuario)
+                        .addGap(62, 62, 62)
+                        .addComponent(botaoCadUsuario))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(214, 214, 214)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(campoTextoCadUsuario)
-                            .addComponent(campoSenhaCadUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(botaoCadUsuario)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(campoTextoCadUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 854, Short.MAX_VALUE)
+                            .addComponent(campoSenhaCadUsuario))))
+                .addContainerGap(246, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addGap(28, 28, 28)
+                .addGap(117, 117, 117)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(campoTextoCadUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -89,20 +108,22 @@ public class cadastroUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(campoSenhaCadUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
-                .addComponent(botaoCadUsuario)
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoCadUsuario)
+                    .addComponent(botaoVoltarCadUsuario))
+                .addGap(277, 277, 277))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -111,6 +132,14 @@ public class cadastroUsuario extends javax.swing.JFrame {
     private void campoTextoCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoCadUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTextoCadUsuarioActionPerformed
+
+    private void botaoVoltarCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarCadUsuarioActionPerformed
+        // TODO add your handling code here:
+        
+        telaInicial ti = new telaInicial();
+        setVisible(false);
+        ti.setVisible(true);
+    }//GEN-LAST:event_botaoVoltarCadUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,6 +178,7 @@ public class cadastroUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCadUsuario;
+    private javax.swing.JButton botaoVoltarCadUsuario;
     private javax.swing.JPasswordField campoSenhaCadUsuario;
     private javax.swing.JTextField campoTextoCadUsuario;
     private javax.swing.JLabel jLabel1;

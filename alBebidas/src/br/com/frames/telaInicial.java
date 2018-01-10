@@ -37,7 +37,6 @@ public class telaInicial extends javax.swing.JFrame {
         menuItemCadCliente = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         menuItemCadProduto = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         menuEditar = new javax.swing.JMenu();
         menuItemEditUsuario = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
@@ -86,9 +85,15 @@ public class telaInicial extends javax.swing.JFrame {
 
         menuCadastrar.setBackground(new java.awt.Color(204, 204, 204));
         menuCadastrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        menuCadastrar.setText("Cadastrar");
+        menuCadastrar.setText("Cadastrar ");
+        menuCadastrar.setMargin(new java.awt.Insets(4, 4, 4, 4));
 
         menuItemCadUsuario.setText("Usuário");
+        menuItemCadUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCadUsuarioActionPerformed(evt);
+            }
+        });
         menuCadastrar.add(menuItemCadUsuario);
         menuCadastrar.add(jSeparator2);
 
@@ -108,12 +113,12 @@ public class telaInicial extends javax.swing.JFrame {
             }
         });
         menuCadastrar.add(menuItemCadProduto);
-        menuCadastrar.add(jSeparator1);
 
         jMenuBar1.add(menuCadastrar);
 
         menuEditar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         menuEditar.setText("Editar");
+        menuEditar.setMargin(new java.awt.Insets(4, 4, 4, 4));
 
         menuItemEditUsuario.setText("Usuário");
         menuEditar.add(menuItemEditUsuario);
@@ -130,6 +135,7 @@ public class telaInicial extends javax.swing.JFrame {
 
         menuBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         menuBuscar.setText("Buscar");
+        menuBuscar.setMargin(new java.awt.Insets(4, 4, 4, 4));
 
         menuItemBuscaCliente.setText("Cliente");
         menuItemBuscaCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +153,7 @@ public class telaInicial extends javax.swing.JFrame {
 
         menuExcluir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         menuExcluir.setText("Excluir");
+        menuExcluir.setMargin(new java.awt.Insets(4, 4, 4, 4));
 
         menuItemExcluirUsuario.setText("Usuário");
         menuExcluir.add(menuItemExcluirUsuario);
@@ -155,6 +162,7 @@ public class telaInicial extends javax.swing.JFrame {
 
         menuVenda.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         menuVenda.setText("Venda");
+        menuVenda.setMargin(new java.awt.Insets(4, 4, 4, 4));
 
         menuItemVendaRealizarVenda.setText("Realizar Venda");
         menuVenda.add(menuItemVendaRealizarVenda);
@@ -166,6 +174,7 @@ public class telaInicial extends javax.swing.JFrame {
 
         menuSair.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         menuSair.setText("Sair");
+        menuSair.setMargin(new java.awt.Insets(4, 4, 4, 4));
         jMenuBar1.add(menuSair);
 
         setJMenuBar(jMenuBar1);
@@ -186,15 +195,29 @@ public class telaInicial extends javax.swing.JFrame {
 
     private void menuItemCadProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadProdutoActionPerformed
         // TODO add your handling code here:
+        cadastroProduto cp = new cadastroProduto();
+        cp.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_menuItemCadProdutoActionPerformed
 
     private void menuItemCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadClienteActionPerformed
         // TODO add your handling code here:
+        cadastroCliente cc = new cadastroCliente();
+        cc.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_menuItemCadClienteActionPerformed
 
     private void menuItemBuscaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemBuscaClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuItemBuscaClienteActionPerformed
+
+    private void menuItemCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadUsuarioActionPerformed
+        // TODO add your handling code here:
+       cadastroUsuario cu = new cadastroUsuario();
+       cu.setVisible(true);
+        setVisible(false);
+        
+    }//GEN-LAST:event_menuItemCadUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,7 +258,6 @@ public class telaInicial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;

@@ -20,6 +20,7 @@ public class AlBebidas {
         // TODO code application logic here
         
         telaLogin tl = new telaLogin();
+        tl.setVisible(true);
     }
     
 }
