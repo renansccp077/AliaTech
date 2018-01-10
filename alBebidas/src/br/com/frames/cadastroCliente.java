@@ -5,7 +5,9 @@
  */
 package br.com.frames;
 
+import br.com.DAO.ClienteDAO;
 import br.com.classes.Cliente;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -195,12 +197,18 @@ public class cadastroCliente extends javax.swing.JFrame {
     private void botaoCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadClienteActionPerformed
         // TODO add your handling code here:
         Cliente cliente = new Cliente();
+        ClienteDAO dao = new ClienteDAO();
+        
         cliente.setNomeCliente(campoCadNomeCliente.getText());
         cliente.setCpfCliente(campoCadCpfCliente.getText());
         cliente.setEnderecoCliente(campoCadEnderecoCliente.getText());
         cliente.setTelefoneCliente(campoCadTelefoneCliente.getText());
         
-        
+        if(cliente.cadastrarCliente()){
+            dao.create(cliente);
+        }else{
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o cliente. Verifique os campos.");
+        }
         
     }//GEN-LAST:event_botaoCadClienteActionPerformed
 

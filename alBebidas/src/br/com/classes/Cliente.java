@@ -59,8 +59,11 @@ public class Cliente {
         this.telefoneCliente = telefoneCliente;
     }
 
-    public void cadastrarCliente(){
+    public boolean cadastrarCliente(){
         
+        
+        
+        return false;
     }
     
 }
