@@ -80,7 +80,7 @@ public class telaInicial extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuBar1.setBackground(new java.awt.Color(230, 225, 225));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         menuCadastrar.setBackground(new java.awt.Color(204, 204, 204));

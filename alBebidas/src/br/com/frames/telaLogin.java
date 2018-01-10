@@ -59,11 +59,14 @@ public class telaLogin extends javax.swing.JFrame {
 
         jLabel3.setText("Senha: ");
 
+        campoUsuarioLogin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         campoUsuarioLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoUsuarioLoginActionPerformed(evt);
             }
         });
+
+        campoSenhaLogin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         botaoEntrarLogin.setText("Entrar");
         botaoEntrarLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +114,7 @@ public class telaLogin extends javax.swing.JFrame {
                 .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(campoSenhaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(botaoEntrarLogin)
                 .addGap(31, 31, 31))
         );

@@ -68,20 +68,20 @@ public class cadastroProduto extends javax.swing.JFrame {
         botaoCadProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botaoCadProduto.setText("Cadastrar");
 
-        campoQtdEntradaCadProduto.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        campoQtdEntradaCadProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        campoPrecoVendaCadProduto.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        campoPrecoVendaCadProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        campoPrecoCompraCadProduto.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        campoPrecoCompraCadProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         campoPrecoCompraCadProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoPrecoCompraCadProdutoActionPerformed(evt);
             }
         });
 
-        campoCodigoCadProduto.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        campoCodigoCadProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        campoDescricaoNomeCadProduto.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        campoDescricaoNomeCadProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         botaoVoltarCadProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botaoVoltarCadProduto.setText("Voltar");
