@@ -204,7 +204,7 @@ public class cadastroCliente extends javax.swing.JFrame {
         cliente.setEnderecoCliente(campoCadEnderecoCliente.getText());
         cliente.setTelefoneCliente(campoCadTelefoneCliente.getText());
         
-        if(cliente.cadastrarCliente()){
+        if(cliente.validarCliente()){
             dao.create(cliente);
         }else{
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar o cliente. Verifique os campos.");
