@@ -159,7 +159,7 @@ public class cadastroUsuario extends javax.swing.JFrame {
         u.setNomeUser(campoTextoCadUsuario.getText());
         u.setSenha(campoSenhaCadUsuario.getText());
         
-        if(u.cadastroUsuario()){
+        if(u.validarUsuario()){
             dao.create(u);
         }else{
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuario, verifique os campos!");
