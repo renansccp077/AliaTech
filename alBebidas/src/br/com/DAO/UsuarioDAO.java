@@ -32,7 +32,7 @@ public class UsuarioDAO {
             
             JOptionPane.showMessageDialog(null, "Salvo com Sucesso!");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao salvar: "+ex);
+            JOptionPane.showMessageDialog(null, "Usuario já cadastrado!");
         }finally{
             ConnectionFactory.closeConnection(con, stmt);
         }

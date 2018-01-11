@@ -44,7 +44,7 @@ public class Usuario {
 
     public boolean validarUsuario() {
         
-        return validaNomeUser()||validaSenha();
+        return validaNomeUser() && validaSenha();
     }
     
     public boolean validaNomeUser(){
