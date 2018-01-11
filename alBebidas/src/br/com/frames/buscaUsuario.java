@@ -9,12 +9,12 @@ package br.com.frames;
  *
  * @author Sales Macedo
  */
-public class buscaCliente extends javax.swing.JFrame {
+public class buscaUsuario extends javax.swing.JFrame {
 
     /**
      * Creates new form buscaCliente
      */
-    public buscaCliente() {
+    public buscaUsuario() {
         initComponents();
     }
 
@@ -31,19 +31,18 @@ public class buscaCliente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         botaoVoltarBuscaCliente = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        campoBuscaCpfCliente = new javax.swing.JTextField();
-        botaoBuscaCliente = new javax.swing.JButton();
+        campoBuscaNomeUsuario = new javax.swing.JTextField();
+        botaoBuscaUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Buscar cliente");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
         setSize(new java.awt.Dimension(1366, 768));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(1366, 768));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setText("Buscar Cliente");
+        jLabel1.setText("Buscar Usuário");
 
         botaoVoltarBuscaCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botaoVoltarBuscaCliente.setText("Voltar");
@@ -54,17 +53,17 @@ public class buscaCliente extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Cpf do cliente: ");
+        jLabel2.setText("Nome do usuário: ");
 
-        campoBuscaCpfCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        campoBuscaCpfCliente.addActionListener(new java.awt.event.ActionListener() {
+        campoBuscaNomeUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        campoBuscaNomeUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoBuscaCpfClienteActionPerformed(evt);
+                campoBuscaNomeUsuarioActionPerformed(evt);
             }
         });
 
-        botaoBuscaCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        botaoBuscaCliente.setText("Buscar");
+        botaoBuscaUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        botaoBuscaUsuario.setText("Buscar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -75,18 +74,17 @@ public class buscaCliente extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(550, 550, 550))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(264, 264, 264)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(campoBuscaCpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(531, 531, 531)
-                        .addComponent(botaoVoltarBuscaCliente)
-                        .addGap(123, 123, 123)
-                        .addComponent(botaoBuscaCliente)))
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addGap(264, 264, 264)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(campoBuscaNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(279, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoVoltarBuscaCliente)
+                .addGap(123, 123, 123)
+                .addComponent(botaoBuscaUsuario)
+                .addGap(542, 542, 542))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,10 +94,10 @@ public class buscaCliente extends javax.swing.JFrame {
                 .addGap(111, 111, 111)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(campoBuscaCpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoBuscaNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoBuscaCliente)
+                    .addComponent(botaoBuscaUsuario)
                     .addComponent(botaoVoltarBuscaCliente))
                 .addContainerGap(484, Short.MAX_VALUE))
         );
@@ -125,9 +123,9 @@ public class buscaCliente extends javax.swing.JFrame {
         ti.setVisible(true);
     }//GEN-LAST:event_botaoVoltarBuscaClienteActionPerformed
 
-    private void campoBuscaCpfClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoBuscaCpfClienteActionPerformed
+    private void campoBuscaNomeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoBuscaNomeUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoBuscaCpfClienteActionPerformed
+    }//GEN-LAST:event_campoBuscaNomeUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,28 +144,29 @@ public class buscaCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(buscaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(buscaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(buscaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(buscaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(buscaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(buscaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(buscaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(buscaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new buscaCliente().setVisible(true);
+                new buscaUsuario().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoBuscaCliente;
+    private javax.swing.JButton botaoBuscaUsuario;
     private javax.swing.JButton botaoVoltarBuscaCliente;
-    private javax.swing.JTextField campoBuscaCpfCliente;
+    private javax.swing.JTextField campoBuscaNomeUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

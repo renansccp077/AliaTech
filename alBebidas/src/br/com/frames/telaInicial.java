@@ -121,14 +121,29 @@ public class telaInicial extends javax.swing.JFrame {
         menuEditar.setMargin(new java.awt.Insets(4, 4, 4, 4));
 
         menuItemEditUsuario.setText("Usuário");
+        menuItemEditUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemEditUsuarioActionPerformed(evt);
+            }
+        });
         menuEditar.add(menuItemEditUsuario);
         menuEditar.add(jSeparator4);
 
         menuItemEditCliente.setText("Cliente");
+        menuItemEditCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemEditClienteActionPerformed(evt);
+            }
+        });
         menuEditar.add(menuItemEditCliente);
         menuEditar.add(jSeparator5);
 
         menuItemEditProduto.setText("Produto");
+        menuItemEditProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemEditProdutoActionPerformed(evt);
+            }
+        });
         menuEditar.add(menuItemEditProduto);
 
         jMenuBar1.add(menuEditar);
@@ -147,6 +162,11 @@ public class telaInicial extends javax.swing.JFrame {
         menuBuscar.add(jSeparator6);
 
         menuItemBuscaProduto.setText("Produto");
+        menuItemBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemBuscaProdutoActionPerformed(evt);
+            }
+        });
         menuBuscar.add(menuItemBuscaProduto);
 
         jMenuBar1.add(menuBuscar);
@@ -219,6 +239,9 @@ public class telaInicial extends javax.swing.JFrame {
 
     private void menuItemBuscaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemBuscaClienteActionPerformed
         // TODO add your handling code here:
+        buscaCliente bc = new buscaCliente();
+        bc.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_menuItemBuscaClienteActionPerformed
 
     private void menuItemCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadUsuarioActionPerformed
@@ -240,6 +263,34 @@ public class telaInicial extends javax.swing.JFrame {
         setVisible(false);
         tl.setVisible(true);
     }//GEN-LAST:event_menuSairMouseClicked
+
+    private void menuItemBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemBuscaProdutoActionPerformed
+        // TODO add your handling code here:
+        buscaProduto bp = new buscaProduto();
+        bp.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_menuItemBuscaProdutoActionPerformed
+
+    private void menuItemEditClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEditClienteActionPerformed
+        // TODO add your handling code here:
+        buscaCliente bc = new buscaCliente();
+        bc.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_menuItemEditClienteActionPerformed
+
+    private void menuItemEditProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEditProdutoActionPerformed
+        // TODO add your handling code here:
+        buscaProduto bp = new buscaProduto();
+        bp.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_menuItemEditProdutoActionPerformed
+
+    private void menuItemEditUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEditUsuarioActionPerformed
+        // TODO add your handling code here:
+        buscaUsuario bu = new buscaUsuario();
+        bu.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_menuItemEditUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
