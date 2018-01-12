@@ -71,6 +71,20 @@ public class Produto {
         return false;
     }
 
+    public boolean validaNomeProduto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+    public boolean validaCodProduto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+    
+ 
+
+
     
     
 }
