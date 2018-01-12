@@ -67,7 +67,7 @@ public class Produto {
         this.qtdEstoque = qtdEstoque;
     }
     
-    public boolean cadastrarProduto(){
+    public boolean validarProduto(){
         return false;
     }
 

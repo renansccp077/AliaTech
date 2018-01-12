@@ -35,6 +35,7 @@ public class telaInicial extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         menuCadastrar = new javax.swing.JMenu();
@@ -44,20 +45,18 @@ public class telaInicial extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         menuItemCadProduto = new javax.swing.JMenuItem();
         menuBuscar = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         menuItemBuscaCliente = new javax.swing.JMenuItem();
         menuItemBuscaProduto = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
         menuVenda = new javax.swing.JMenu();
         menuItemVendaRealizarVenda = new javax.swing.JMenuItem();
-        menuItemVendaProcurarRegistroDeVenda = new javax.swing.JMenuItem();
-        menuSair = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela inicial");
         setBackground(new java.awt.Color(255, 255, 0));
+        setResizable(false);
 
         painelInicial.setPreferredSize(new java.awt.Dimension(1280, 720));
 
@@ -65,11 +64,11 @@ public class telaInicial extends javax.swing.JFrame {
         painelInicial.setLayout(painelInicialLayout);
         painelInicialLayout.setHorizontalGroup(
             painelInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1412, Short.MAX_VALUE)
+            .addGap(0, 1012, Short.MAX_VALUE)
         );
         painelInicialLayout.setVerticalGroup(
             painelInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGap(0, 536, Short.MAX_VALUE)
         );
 
         jMenuBar1.setBackground(new java.awt.Color(230, 225, 225));
@@ -79,6 +78,14 @@ public class telaInicial extends javax.swing.JFrame {
 
         jMenuItem4.setText("Balanço financeiro");
         jMenu3.add(jMenuItem4);
+
+        jMenuItem5.setText("Funcionários");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem5);
 
         jMenuItem2.setText("Sobre");
         jMenu3.add(jMenuItem2);
@@ -125,9 +132,6 @@ public class telaInicial extends javax.swing.JFrame {
         menuBuscar.setText("Buscar");
         menuBuscar.setMargin(new java.awt.Insets(4, 4, 4, 4));
 
-        jMenuItem1.setText("Usuário");
-        menuBuscar.add(jMenuItem1);
-
         menuItemBuscaCliente.setText("Cliente");
         menuItemBuscaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,27 +156,14 @@ public class telaInicial extends javax.swing.JFrame {
         menuVenda.setMargin(new java.awt.Insets(4, 4, 4, 4));
 
         menuItemVendaRealizarVenda.setText("Realizar Venda");
+        menuItemVendaRealizarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVendaRealizarVendaActionPerformed(evt);
+            }
+        });
         menuVenda.add(menuItemVendaRealizarVenda);
 
-        menuItemVendaProcurarRegistroDeVenda.setText("Procurar Registro de Vendas");
-        menuVenda.add(menuItemVendaProcurarRegistroDeVenda);
-
         jMenuBar1.add(menuVenda);
-
-        menuSair.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        menuSair.setText("Sair");
-        menuSair.setMargin(new java.awt.Insets(4, 4, 4, 4));
-        menuSair.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuSairMouseClicked(evt);
-            }
-        });
-        menuSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuSairActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(menuSair);
 
         setJMenuBar(jMenuBar1);
 
@@ -180,21 +171,24 @@ public class telaInicial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelInicial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1412, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 21, Short.MAX_VALUE)
+                .addComponent(painelInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 1012, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelInicial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+            .addComponent(painelInicial, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItemCadProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadProdutoActionPerformed
         // TODO add your handling code here:
-        cadastroProduto cp = new cadastroProduto();
-        cp.setVisible(true);
-        setVisible(false);
+        JInternalFrame cd = new InternalCadastroProduto();
+        painelInicial.add(cd);
+        cd.setVisible(true);
     }//GEN-LAST:event_menuItemCadProdutoActionPerformed
 
     private void menuItemCadClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadClienteActionPerformed
@@ -206,9 +200,9 @@ public class telaInicial extends javax.swing.JFrame {
 
     private void menuItemBuscaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemBuscaClienteActionPerformed
         // TODO add your handling code here:
-        buscaCliente bc = new buscaCliente();
+        JInternalFrame bc = new InternalBuscaCliente();
+        painelInicial.add(bc);
         bc.setVisible(true);
-        setVisible(false);
     }//GEN-LAST:event_menuItemBuscaClienteActionPerformed
 
     private void menuItemCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCadUsuarioActionPerformed
@@ -219,24 +213,28 @@ public class telaInicial extends javax.swing.JFrame {
         
     }//GEN-LAST:event_menuItemCadUsuarioActionPerformed
 
-    private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_menuSairActionPerformed
-
-    private void menuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSairMouseClicked
-        // TODO add your handling code here:
-        telaLogin tl = new telaLogin();
-        setVisible(false);
-        tl.setVisible(true);
-    }//GEN-LAST:event_menuSairMouseClicked
-
     private void menuItemBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemBuscaProdutoActionPerformed
         // TODO add your handling code here:
-        buscaProduto bp = new buscaProduto();
+        JInternalFrame bp = new InternalBuscaProduto();
+        painelInicial.add(bp);
         bp.setVisible(true);
-        setVisible(false);
+        
     }//GEN-LAST:event_menuItemBuscaProdutoActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame funcionarios = new InternalBuscaUser();
+        painelInicial.add(funcionarios);
+        funcionarios.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void menuItemVendaRealizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVendaRealizarVendaActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame venda = new InternalVenda();
+        painelInicial.add(venda);
+        venda.setLocation(100,10);
+        venda.setVisible(true);
+    }//GEN-LAST:event_menuItemVendaRealizarVendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,10 +275,10 @@ public class telaInicial extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator6;
@@ -292,9 +290,7 @@ public class telaInicial extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemCadCliente;
     private javax.swing.JMenuItem menuItemCadProduto;
     private javax.swing.JMenuItem menuItemCadUsuario;
-    private javax.swing.JMenuItem menuItemVendaProcurarRegistroDeVenda;
     private javax.swing.JMenuItem menuItemVendaRealizarVenda;
-    private javax.swing.JMenu menuSair;
     private javax.swing.JMenu menuVenda;
     private javax.swing.JPanel painelInicial;
     // End of variables declaration//GEN-END:variables
