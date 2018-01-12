@@ -35,6 +35,7 @@ public class ProdutoTest {
     
     @Before
     public void setUp() {
+        p = new Produto();
     }
     
     @After
@@ -43,11 +44,7 @@ public class ProdutoTest {
     /**
      * Test of getNomeCliente method, of class Cliente.
      */
-    //private String nomeProduto;
-    //private int CodProduto;
-    //private float precoCompra;
-    //private float precoVenda;
-    //private int qtdEstoque;
+
     @Test
     public void testProdutoVazio() {
         p.setNomeProduto("");

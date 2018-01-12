@@ -63,7 +63,9 @@ public class Cliente {
     }
 
     public boolean validarCliente() {
-
+        if(validaNomeClient() && validaCPFCliente()){
+            return true;
+        }
         return false;
     }
 
@@ -81,6 +83,7 @@ public class Cliente {
 
     public boolean validaCPFCliente() {
         // considera-se erro CPF's formados por uma sequencia de numeros iguais
+        
         if (cpfCliente.equals("00000000000") || cpfCliente.equals("11111111111")
                 || cpfCliente.equals("22222222222") || cpfCliente.equals("33333333333")
                 || cpfCliente.equals("44444444444") || cpfCliente.equals("55555555555")
@@ -88,8 +91,7 @@ public class Cliente {
                 || cpfCliente.equals("88888888888") || cpfCliente.equals("99999999999")
                 || (cpfCliente.length() != 11)) {
             JOptionPane.showMessageDialog(null, "Digite um CPF válido!");
-            return (false);
-            
+            return false;
         }
 
         char dig10, dig11;
@@ -132,14 +134,14 @@ public class Cliente {
 
             // Verifica se os digitos calculados conferem com os digitos informados.
             if ((dig10 == cpfCliente.charAt(9)) && (dig11 == cpfCliente.charAt(10))) {
-                return (true);
+                return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Digite um CPF válido!");
-                return (false);
+                return false;
             }
         } catch (InputMismatchException erro) {
-            JOptionPane.showMessageDialog(null, "Digite um CPF válido!");
-            return (false);
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro!" + erro);
+            return false;
             
         }
     }

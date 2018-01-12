@@ -68,8 +68,26 @@ public class ClienteTest {
     
     @Test
     public void testCPFinvalido(){
-       c.setNomeCliente("123");
+       c.setCpfCliente("12121281212");
        assertFalse("Deveria retornar falso", c.validaCPFCliente());
+    }
+    
+    @Test
+    public void testCPFvalido(){
+       c.setCpfCliente("04516322307");
+       assertTrue("Deveria retornar verdadeiro", c.validaCPFCliente());
+    }
+    
+    @Test
+    public void testCPFcomOutrosCaracteres(){
+       c.setCpfCliente("045e6322307");
+       assertFalse("Deveria retornar falso", c.validaCPFCliente());
+    }
+    
+    @Test
+    public void testTelefoneInvalido(){
+       c.setTelefoneCliente("12121281212");
+       assertFalse("Deveria retornar falso", c.validaTelefoneCliente());
     }
     
 }

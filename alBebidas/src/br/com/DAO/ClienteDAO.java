@@ -23,7 +23,7 @@ public class ClienteDAO {
         PreparedStatement stmt = null;
 
         try {
-            stmt = (PreparedStatement) con.prepareStatement("INSERT INTO Produto (NomeCliente, cpf, telefone, endereco) VALUES (?,?,?,?)");
+            stmt = (PreparedStatement) con.prepareStatement("INSERT INTO cliente (NomeCliente, Cpf, Telefone, Endereco) VALUES (?,?,?,?)");
             stmt.setString(1, c.getNomeCliente());
             stmt.setString(2, c.getCpfCliente());
             stmt.setString(3, c.getTelefoneCliente());
@@ -31,7 +31,7 @@ public class ClienteDAO {
 
             stmt.executeUpdate();
 
-            JOptionPane.showMessageDialog(null, "Salvo com Sucesso!");
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao salvar: " + ex);
         } finally {
