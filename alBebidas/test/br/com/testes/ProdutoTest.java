@@ -24,26 +24,11 @@ public class ProdutoTest {
     
     }
     
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         p = new Produto();
     }
     
-    @After
-    public void tearDown() {
-    }
-    /**
-     * Test of getNomeCliente method, of class Cliente.
-     */
 
     @Test
     public void testProdutoVazio() {
@@ -51,30 +36,6 @@ public class ProdutoTest {
         assertFalse("Deveria retornar falso", p.validaNomeProduto());
     }
     
-   @Test
-    public void testCodProdutoVazio() {
-        p.setCodProduto(1);
-        assertFalse("Deveria retornar falso", p.validaCodProduto());
-    }
     
-    
-   @Test
-    public void testCodProdutoComLetras() {
-        p.setCodProduto("oioioi");
-        assertFalse("Deveria retornar falso", p.validaCodProduto());
-    }
-    
-    
-   @Test
-    public void testCodProdutoComNomesEletras() {
-        p.setCodProduto("oioioi1234");
-        assertFalse("Deveria retornar falso", p.validaCodProduto());
-    }
-    
-    
-   @Test
-    public void testCodProdutoSimbolosEspeciais() {
-        p.setCodProduto("*!&%¨$#@^");
-        assertFalse("Deveria retornar falso", p.validaCodProduto());
-    }
+
 }

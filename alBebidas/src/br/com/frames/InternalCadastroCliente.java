@@ -113,10 +113,8 @@ public class InternalCadastroCliente extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/imagens/cancel.png"))); // NOI18N
         jButton1.setText("Cancelar");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/imagens/user_add.png"))); // NOI18N
         jButton2.setText("Cadastrar Cliente");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
