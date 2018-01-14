@@ -43,6 +43,8 @@ public class ProdutoDAO {
     }
     
  
+   
+    
     public void update(Produto p){
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
@@ -64,6 +66,25 @@ public class ProdutoDAO {
             ConnectionFactory.closeConnection(con, stmt);
         }
         
+  }
+    
+     public void delete(Produto p){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        
+        try {
+            stmt = (PreparedStatement) con.prepareStatement("DELETE FROM Produto WHERE NomeProduto = ?");
+            stmt.setString(1, p.getNomeProduto());
+            
+            
+            stmt.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null, "Item Excluido com Sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao Fazer Exclusão: "+ex);
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt);
+        }
         
     }
 }
