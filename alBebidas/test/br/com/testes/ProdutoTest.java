@@ -36,6 +36,4 @@ public class ProdutoTest {
         assertFalse("Deveria retornar falso", p.validaNomeProduto());
     }
     
-    
-
-}
+  }
