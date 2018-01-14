@@ -36,7 +36,25 @@ public class UsuarioDAO {
         }finally{
             ConnectionFactory.closeConnection(con, stmt);
         }
-        
-        
+    }
+    
+    public void update (Usuario u){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        String sql = "UPDATE usuario SET NomeUsuario = ?, Senha = ? WHERE NomeUsuario = ?";
+        try {
+            stmt = (PreparedStatement) con.prepareStatement(sql);
+            stmt.setString(1, u.getNomeUser());
+            stmt.setString(2, u.getSenha());
+            stmt.setString(1, u.getNomeUser());
+
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Registro alterado com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao alterar, tente novamente." + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
     }
 }

@@ -38,4 +38,27 @@ public class ClienteDAO {
             ConnectionFactory.closeConnection(con, stmt);
         }
     }
+    
+    public void atualiza (Cliente c){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        String sql = "UPDATE cliente SET NomeCliente = ?, Cpf = ?, Telefone = ?, Endereco = ? WHERE Cpf = ?";
+        try {
+            stmt = (PreparedStatement) con.prepareStatement(sql);
+            stmt.setString(1, c.getNomeCliente());
+            stmt.setString(2, c.getCpfCliente());
+            stmt.setString(3, c.getTelefoneCliente());
+            stmt.setString(4, c.getEnderecoCliente());
+            stmt.setString(5, c.getCpfCliente());
+
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Registro alterado com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao alterar, tente novamente." + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+    }
+    
 }
