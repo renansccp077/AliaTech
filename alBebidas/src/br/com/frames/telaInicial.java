@@ -46,8 +46,8 @@ public class telaInicial extends javax.swing.JFrame {
         menuItemCadProduto = new javax.swing.JMenuItem();
         menuBuscar = new javax.swing.JMenu();
         menuItemBuscaCliente = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         menuItemBuscaProduto = new javax.swing.JMenuItem();
-        jSeparator6 = new javax.swing.JPopupMenu.Separator();
         menuVenda = new javax.swing.JMenu();
         menuItemVendaRealizarVenda = new javax.swing.JMenuItem();
 
@@ -139,6 +139,7 @@ public class telaInicial extends javax.swing.JFrame {
             }
         });
         menuBuscar.add(menuItemBuscaCliente);
+        menuBuscar.add(jSeparator1);
 
         menuItemBuscaProduto.setText("Produto");
         menuItemBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +148,6 @@ public class telaInicial extends javax.swing.JFrame {
             }
         });
         menuBuscar.add(menuItemBuscaProduto);
-        menuBuscar.add(jSeparator6);
 
         jMenuBar1.add(menuBuscar);
 
@@ -279,9 +279,9 @@ public class telaInicial extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
-    private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JMenu menuBuscar;
     private javax.swing.JMenu menuCadastrar;
