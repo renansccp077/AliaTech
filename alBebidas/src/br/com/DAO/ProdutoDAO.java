@@ -102,6 +102,7 @@ public class ProdutoDAO {
             stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM Produto WHERE NomeProduto LIKE ?");
             stmt.setString(1, "%"+nome+"%");   
             rs = stmt.executeQuery();
+
                         
             while (rs.next()) {
                 Produto p = new Produto();
@@ -114,6 +115,17 @@ public class ProdutoDAO {
                 
             }
             
+
+            
+            while (rs.next()) {
+                Produto p = new Produto();
+                
+                p.setCodProduto(rs.getInt("idproduto"));
+                p.setNomeProduto(rs.getString("nomeproduto"));
+                p.setPrecoCompra(rs.getFloat("precocompra"));
+                p.setPrecoVenda(rs.getFloat("precovenda"));
+                p.setQtdEstoque(rs.getInt("qtdestoque"));
+            }
             
             //JOptionPane.showMessageDialog(null, "Item Excluido com Sucesso!");
         } catch (SQLException ex) {

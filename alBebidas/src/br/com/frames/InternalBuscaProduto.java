@@ -25,7 +25,7 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
         DefaultTableModel modelo = (DefaultTableModel) tabelaMostraProduto.getModel();
         modelo.setNumRows(0);
         ProdutoDAO pd = new ProdutoDAO();
-        
+
         for(Produto p : pd.busca(nome)){
             
             modelo.addRow(new Object[]{
