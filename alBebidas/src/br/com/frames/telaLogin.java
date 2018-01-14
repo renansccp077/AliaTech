@@ -5,6 +5,9 @@
  */
 package br.com.frames;
 
+import br.com.DAO.UsuarioDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Sales Macedo
@@ -105,7 +108,6 @@ public class telaLogin extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        botaoEntrarLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/imagens/05.jpg"))); // NOI18N
         botaoEntrarLogin.setText("Entrar");
         botaoEntrarLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +136,7 @@ public class telaLogin extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botaoEntrarLogin)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -158,10 +160,16 @@ public class telaLogin extends javax.swing.JFrame {
 
     private void botaoEntrarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarLoginActionPerformed
         // TODO add your handling code here:
+        UsuarioDAO dao = new UsuarioDAO();
+        if(dao.chekLogin(campoUsuarioLogin.getText(), campoSenhaLogin.getText())){
+            telaInicial ti = new telaInicial();
+            this.dispose();
+            ti.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Usuario ou Senha Incorreta!");
+        }
         
-        telaInicial ti = new telaInicial();
-        setVisible(false);
-        ti.setVisible(true);
+        
     }//GEN-LAST:event_botaoEntrarLoginActionPerformed
 
     /**

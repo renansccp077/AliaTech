@@ -11,6 +11,9 @@ import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -56,5 +59,54 @@ public class UsuarioDAO {
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
         }
+    }
+    
+    public List<Usuario> read(){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        List <Usuario> usuarios = new ArrayList<>();
+        try {
+            stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM usuario");
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Usuario u = new Usuario();
+                u.setNomeUser(rs.getString("NomeUsuario"));
+                u.setSenha(rs.getString("senha"));
+                usuarios.add(u);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Usuario já cadastrado!");
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return usuarios;
+    }
+    
+    public boolean chekLogin(String login, String senha){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        boolean check = false;
+        
+        try {
+            stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM usuario WHERE NomeUsuario = ? AND Senha = ?");
+            stmt.setString(1, login);
+            stmt.setString(2, senha);
+            rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                check = true;
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Usuario já cadastrado!");
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+        
+        return check;
     }
 }
