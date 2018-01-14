@@ -5,6 +5,10 @@
  */
 package br.com.frames;
 
+import br.com.DAO.ProdutoDAO;
+import br.com.classes.Produto;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Renan
@@ -17,6 +21,24 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
     public InternalBuscaProduto() {
         initComponents();
     }
+    public void carregaTabela(String nome){
+        DefaultTableModel modelo = (DefaultTableModel) tabelaMostraProduto.getModel();
+        modelo.setNumRows(0);
+        ProdutoDAO pd = new ProdutoDAO();
+        for(Produto p : pd.busca(nome)){
+            
+            modelo.addRow(new Object[]{
+                p.getCodProduto(),
+                p.getNomeProduto(),
+                p.getPrecoCompra(),
+                p.getPrecoVenda(),
+                p.getQtdEstoque()
+            
+                
+            });
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,11 +50,11 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        botaoBuscaProduto = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        campoNomeProdutoBusca = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaMostraProduto = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -51,14 +73,20 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar produto"));
 
-        jToggleButton1.setText("Buscar produto");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        botaoBuscaProduto.setText("Buscar produto");
+        botaoBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                botaoBuscaProdutoActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Produto:");
+
+        campoNomeProdutoBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoNomeProdutoBuscaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -68,9 +96,9 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoNomeProdutoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jToggleButton1)
+                .addComponent(botaoBuscaProduto)
                 .addContainerGap(185, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -79,12 +107,12 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1))
+                    .addComponent(campoNomeProdutoBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoBuscaProduto))
                 .addContainerGap())
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaMostraProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -107,9 +135,9 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
+        jScrollPane1.setViewportView(tabelaMostraProduto);
+        if (tabelaMostraProduto.getColumnModel().getColumnCount() > 0) {
+            tabelaMostraProduto.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jButton2.setText("Alterar registro do produto");
@@ -219,14 +247,21 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void botaoBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscaProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+        carregaTabela(campoNomeProdutoBusca.getText());
+    }//GEN-LAST:event_botaoBuscaProdutoActionPerformed
+
+    private void campoNomeProdutoBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeProdutoBuscaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoNomeProdutoBuscaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton botaoBuscaProduto;
     private javax.swing.JTextField campoCodigoCadProduto;
     private javax.swing.JTextField campoNomeCadProduto;
+    private javax.swing.JTextField campoNomeProdutoBusca;
     private javax.swing.JTextField campoPrecoCompraCadProduto;
     private javax.swing.JTextField campoPrecoVendaCadProduto;
     private javax.swing.JTextField campoQtdEntradaCadProduto;
@@ -241,8 +276,6 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JTable tabelaMostraProduto;
     // End of variables declaration//GEN-END:variables
 }
