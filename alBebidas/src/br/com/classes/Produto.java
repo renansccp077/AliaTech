@@ -68,7 +68,7 @@ public class Produto {
     }
     
     public boolean validarProduto(){
-        return false;
+        return true;
     }
 
     public boolean validaNomeProduto() {

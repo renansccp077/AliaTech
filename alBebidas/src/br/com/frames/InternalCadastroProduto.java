@@ -7,7 +7,6 @@ package br.com.frames;
 
 import br.com.DAO.ProdutoDAO;
 import br.com.classes.Produto;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -180,7 +179,7 @@ public class InternalCadastroProduto extends javax.swing.JInternalFrame {
         produto.setPrecoVenda(Float.parseFloat(campoPrecoVendaCadProduto.getText()));
         produto.setQtdEstoque(Integer.parseInt(campoQtdEntradaCadProduto.getText()));
         
-        if(produto.validarProduto()){
+        if(produto.validarProduto() == true){
             dao.create(produto);
         }else{
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto. Verifique os campos.");
