@@ -21,7 +21,7 @@ public class ClienteDAO {
     public void create(Cliente c) {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
-        String sql = "INSERT INTO cliente (NomeCliente, Cpf, Telefone, Endereco) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO cliente (nomecliente, cpfcliente, telefone, endereco) VALUES (?,?,?,?)";
         try {
             stmt = (PreparedStatement) con.prepareStatement(sql);
             stmt.setString(1, c.getNomeCliente());
@@ -42,7 +42,7 @@ public class ClienteDAO {
     public void atualiza (Cliente c){
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
-        String sql = "UPDATE cliente SET NomeCliente = ?, Cpf = ?, Telefone = ?, Endereco = ? WHERE Cpf = ?";
+        String sql = "UPDATE cliente SET NomeCliente = ?, Cpfcliente = ?, Telefone = ?, Endereco = ? WHERE Cpf = ?";
         try {
             stmt = (PreparedStatement) con.prepareStatement(sql);
             stmt.setString(1, c.getNomeCliente());
