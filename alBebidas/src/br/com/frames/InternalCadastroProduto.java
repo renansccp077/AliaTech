@@ -20,6 +20,7 @@ public class InternalCadastroProduto extends javax.swing.JInternalFrame {
      */
     public InternalCadastroProduto() {
         initComponents();
+        
     }
 
     /**
@@ -172,6 +173,8 @@ public class InternalCadastroProduto extends javax.swing.JInternalFrame {
         
         Produto produto = new Produto();
         ProdutoDAO dao = new ProdutoDAO();
+        InternalBuscaProduto b = new InternalBuscaProduto();
+        b.mostraProdutos();
         
         produto.setCodProduto(Integer.parseInt(campoCodigoCadProduto.getText()));
         produto.setNomeProduto(campoNomeCadProduto.getText());
@@ -181,6 +184,12 @@ public class InternalCadastroProduto extends javax.swing.JInternalFrame {
         
         if(produto.validarProduto() == true){
             dao.create(produto);
+           // produto.setCodProduto(" ");
+           // produto.setNomeProduto("");
+           // produto.setPrecoCompra("");
+            
+            
+            
         }else{
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto. Verifique os campos.");
         }

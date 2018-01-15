@@ -8,6 +8,7 @@ package br.com.frames;
 import br.com.DAO.ProdutoDAO;
 import br.com.classes.Produto;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -20,13 +21,38 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
      */
     public InternalBuscaProduto() {
         initComponents();
+        DefaultTableModel modelo = (DefaultTableModel) tabelaMostraProduto.getModel();
+        tabelaMostraProduto.setRowSorter(new TableRowSorter(modelo));
+        mostraProdutos();
+        
     }
-    public void carregaTabela(String nome){
+    public void mostraProdutos(){
+        DefaultTableModel modelo = (DefaultTableModel) tabelaMostraProduto.getModel();
+        modelo.setNumRows(0);
+        ProdutoDAO pd = new ProdutoDAO();
+        
+        
+
+        for(Produto p: pd.read()){
+            
+            modelo.addRow(new Object[]{
+                p.getCodProduto(),
+                p.getNomeProduto(),
+                p.getPrecoCompra(),
+                p.getPrecoVenda(),
+                p.getQtdEstoque()
+            
+                
+            });
+        }
+    }
+    
+    public void carregaTabelaBusca(String nome){
         DefaultTableModel modelo = (DefaultTableModel) tabelaMostraProduto.getModel();
         modelo.setNumRows(0);
         ProdutoDAO pd = new ProdutoDAO();
 
-        for(Produto p : pd.busca(nome)){
+        for(Produto p: pd.readForNome(nome)){
             
             modelo.addRow(new Object[]{
                 p.getCodProduto(),
@@ -54,21 +80,21 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
         botaoBuscaProduto = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         campoNomeProdutoBusca = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaMostraProduto = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        campoPrecoCompraCadProduto = new javax.swing.JTextField();
+        vcompra = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        campoNomeCadProduto = new javax.swing.JTextField();
+        nome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        campoPrecoVendaCadProduto = new javax.swing.JTextField();
-        campoCodigoCadProduto = new javax.swing.JTextField();
+        vvenda = new javax.swing.JTextField();
+        cod = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        campoQtdEntradaCadProduto = new javax.swing.JTextField();
+        qtd = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelaMostraProduto = new javax.swing.JTable();
 
         setClosable(true);
 
@@ -113,34 +139,6 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        tabelaMostraProduto.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Nome do produto", "Preço unitário de compra", "Preço unitário de venda", "Qtd. Estoque"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tabelaMostraProduto);
-        if (tabelaMostraProduto.getColumnModel().getColumnCount() > 0) {
-            tabelaMostraProduto.getColumnModel().getColumn(4).setResizable(false);
-        }
-
         jButton2.setText("Alterar registro do produto");
 
         jButton1.setText("Apagar registro do produto");
@@ -172,23 +170,23 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(campoNomeCadProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoCodigoCadProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoPrecoCompraCadProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(vcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(campoPrecoVendaCadProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(vvenda, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoQtdEntradaCadProduto)))
+                        .addComponent(qtd)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -196,20 +194,46 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoCodigoCadProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel2)
-                    .addComponent(campoNomeCadProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(campoPrecoCompraCadProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(vcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(campoPrecoVendaCadProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(vvenda, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(campoQtdEntradaCadProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(qtd, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        tabelaMostraProduto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cod. Produto", "Nome do Produto", "Preço de Compra", "Preço de Venda", "Qtd. em Estoque"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaMostraProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMostraProdutoMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tabelaMostraProduto);
+        if (tabelaMostraProduto.getColumnModel().getColumnCount() > 0) {
+            tabelaMostraProduto.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -224,10 +248,10 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(105, 105, 105))
-                    .addComponent(jScrollPane1)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,14 +259,14 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -250,22 +274,30 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
 
     private void botaoBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscaProdutoActionPerformed
         // TODO add your handling code here:
-        carregaTabela(campoNomeProdutoBusca.getText());
+        carregaTabelaBusca(campoNomeProdutoBusca.getText());
     }//GEN-LAST:event_botaoBuscaProdutoActionPerformed
 
     private void campoNomeProdutoBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeProdutoBuscaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoNomeProdutoBuscaActionPerformed
 
+    private void tabelaMostraProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMostraProdutoMouseClicked
+        // TODO add your handling code here:
+        int indiceLinha = tabelaMostraProduto.getSelectedRow();
+        
+        cod.setText(tabelaMostraProduto.getValueAt(indiceLinha,0).toString());
+        nome.setText(tabelaMostraProduto.getValueAt(indiceLinha,1).toString());
+        vcompra.setText(tabelaMostraProduto.getValueAt(indiceLinha,2).toString());
+        vvenda.setText(tabelaMostraProduto.getValueAt(indiceLinha,3).toString());
+        qtd.setText(tabelaMostraProduto.getValueAt(indiceLinha,4).toString());
+        
+    }//GEN-LAST:event_tabelaMostraProdutoMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botaoBuscaProduto;
-    private javax.swing.JTextField campoCodigoCadProduto;
-    private javax.swing.JTextField campoNomeCadProduto;
     private javax.swing.JTextField campoNomeProdutoBusca;
-    private javax.swing.JTextField campoPrecoCompraCadProduto;
-    private javax.swing.JTextField campoPrecoVendaCadProduto;
-    private javax.swing.JTextField campoQtdEntradaCadProduto;
+    private javax.swing.JTextField cod;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -276,7 +308,11 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField nome;
+    private javax.swing.JTextField qtd;
     private javax.swing.JTable tabelaMostraProduto;
+    private javax.swing.JTextField vcompra;
+    private javax.swing.JTextField vvenda;
     // End of variables declaration//GEN-END:variables
 }

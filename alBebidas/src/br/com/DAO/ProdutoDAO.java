@@ -90,8 +90,38 @@ public class ProdutoDAO {
         }
         
     }
+      public List<Produto> read(){
+          Connection con = ConnectionFactory.getConnection();
+          PreparedStatement stmt = null;
+          ResultSet rs = null;
+          
+          List<Produto> produtos = new ArrayList();
+          try {
+              stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM produto");
+              rs = stmt.executeQuery();
+              
+              while (rs.next()) {
+                 Produto p = new Produto();
+                 
+                 p.setCodProduto(rs.getInt("idproduto"));
+                 p.setNomeProduto(rs.getString("nomeproduto"));
+                 p.setPrecoCompra(rs.getFloat("precocompra"));
+                 p.setPrecoVenda(rs.getFloat("precovenda"));
+                 p.setQtdEstoque(rs.getInt("qtdestoque"));
+                 produtos.add(p);
+                  
+              }
+              
+          } catch (Exception e) {
+              JOptionPane.showMessageDialog(null, "Erro ao carregar dados.");
+          }finally{
+              ConnectionFactory.closeConnection(con, stmt, rs);
+          }
+          
+          return produtos;
+      }
      
-      public List<Produto> busca(String nome){
+      public List<Produto> readForNome(String nome){
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
           ResultSet rs = null;
@@ -99,7 +129,7 @@ public class ProdutoDAO {
           
           //Produto p = new Produto();
         try {
-            stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM Produto WHERE NomeProduto LIKE ?");
+            stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM produto WHERE nomeproduto LIKE ?");
             stmt.setString(1, "%"+nome+"%");   
             rs = stmt.executeQuery();
 
@@ -112,19 +142,7 @@ public class ProdutoDAO {
                 p.setPrecoCompra(rs.getFloat("precocompra"));
                 p.setPrecoVenda(rs.getFloat("precovenda"));
                 p.setQtdEstoque(rs.getInt("qtdestoque"));
-                
-            }
-            
-
-            
-            while (rs.next()) {
-                Produto p = new Produto();
-                
-                p.setCodProduto(rs.getInt("idproduto"));
-                p.setNomeProduto(rs.getString("nomeproduto"));
-                p.setPrecoCompra(rs.getFloat("precocompra"));
-                p.setPrecoVenda(rs.getFloat("precovenda"));
-                p.setQtdEstoque(rs.getInt("qtdestoque"));
+                produtos.add(p);
             }
             
             //JOptionPane.showMessageDialog(null, "Item Excluido com Sucesso!");
