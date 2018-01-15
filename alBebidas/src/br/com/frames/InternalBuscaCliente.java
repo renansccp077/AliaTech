@@ -6,6 +6,11 @@
 
 package br.com.frames;
 
+import br.com.DAO.ClienteDAO;
+import br.com.classes.Cliente;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Renan
@@ -15,6 +20,45 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
     /** Creates new form InternalBuscaCliente */
     public InternalBuscaCliente() {
         initComponents();
+        DefaultTableModel modelo = (DefaultTableModel) tabelaMostraCliente.getModel();
+        tabelaMostraCliente.setRowSorter(new TableRowSorter(modelo));
+        mostraClientes();
+    }
+    
+    public void mostraClientes(){
+        DefaultTableModel modelo = (DefaultTableModel) tabelaMostraCliente.getModel();
+        modelo.setNumRows(0);
+        ClienteDAO cd = new ClienteDAO();
+        
+        
+
+        for(Cliente c: cd.read()){
+            
+            modelo.addRow(new Object[]{
+                c.getNomeCliente(),
+                c.getCpfCliente(),
+                c.getEnderecoCliente(),
+                c.getTelefoneCliente(),
+            });
+        }
+    }
+    
+    public void carregaTabelaBuscaCliente(String nome){
+        DefaultTableModel modelo = (DefaultTableModel) tabelaMostraCliente.getModel();
+        modelo.setNumRows(0);
+        ClienteDAO cd = new ClienteDAO();
+
+        for(Cliente c: cd.readForNome(nome)){
+            
+            modelo.addRow(new Object[]{
+                c.getNomeCliente(),
+                c.getCpfCliente(),
+                c.getEnderecoCliente(),
+                c.getTelefoneCliente(),
+            
+                
+            });
+        }
     }
 
     /** This method is called from within the constructor to
@@ -28,38 +72,38 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaMostraCliente = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        campoCadEnderecoCliente = new javax.swing.JTextField();
+        endereco = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        campoCadCpfCliente = new javax.swing.JTextField();
+        cpf = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        campoCadTelefoneCliente = new javax.swing.JTextField();
-        campoCadNomeCliente = new javax.swing.JTextField();
+        telefone = new javax.swing.JTextField();
+        nomecliente = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        botaoBuscaCliente = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        campoNomeBuscaCliente = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setClosable(true);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaMostraCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Nome do cliente", "CPF", "Telefone", "Endereço"
+                "Nome do cliente", "CPF", "Telefone", "Endereço"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -70,15 +114,23 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(1);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(10);
+        tabelaMostraCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMostraClienteMouseClicked(evt);
+            }
+        });
+        tabelaMostraCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tabelaMostraClienteKeyReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabelaMostraCliente);
+        if (tabelaMostraCliente.getColumnModel().getColumnCount() > 0) {
+            tabelaMostraCliente.getColumnModel().getColumn(0).setResizable(false);
+            tabelaMostraCliente.getColumnModel().getColumn(1).setResizable(false);
+            tabelaMostraCliente.getColumnModel().getColumn(2).setResizable(false);
+            tabelaMostraCliente.getColumnModel().getColumn(3).setResizable(false);
+            tabelaMostraCliente.getColumnModel().getColumn(3).setPreferredWidth(10);
         }
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -106,16 +158,16 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(campoCadEnderecoCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                    .addComponent(campoCadNomeCliente, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(endereco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                    .addComponent(nomecliente, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoCadTelefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoCadCpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -123,25 +175,25 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoCadNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomecliente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(campoCadCpfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(campoCadEnderecoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(campoCadTelefoneCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Buscar cliente"));
 
-        jToggleButton1.setText("Buscar cliente");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        botaoBuscaCliente.setText("Buscar cliente");
+        botaoBuscaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                botaoBuscaClienteActionPerformed(evt);
             }
         });
 
@@ -155,9 +207,9 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoNomeBuscaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jToggleButton1)
+                .addComponent(botaoBuscaCliente)
                 .addContainerGap(178, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -166,12 +218,12 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton1))
+                    .addComponent(campoNomeBuscaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoBuscaCliente))
                 .addContainerGap())
         );
 
-        jButton1.setText("Apagar registro do cliente");
+        jButton1.setText("Excluir registro do cliente");
 
         jButton2.setText("Alterar registro do cliente");
 
@@ -223,16 +275,36 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void botaoBuscaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscaClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+        carregaTabelaBuscaCliente(campoNomeBuscaCliente.getText());
+        
+    }//GEN-LAST:event_botaoBuscaClienteActionPerformed
 
+    private void tabelaMostraClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMostraClienteMouseClicked
+        // TODO add your handling code here:
+        int indiceLinha = tabelaMostraCliente.getSelectedRow();
+        nomecliente.setText(tabelaMostraCliente.getValueAt(indiceLinha,0).toString());
+        cpf.setText(tabelaMostraCliente.getValueAt(indiceLinha,1).toString());
+        endereco.setText(tabelaMostraCliente.getValueAt(indiceLinha,2).toString());
+        telefone.setText(tabelaMostraCliente.getValueAt(indiceLinha,3).toString());
+    }//GEN-LAST:event_tabelaMostraClienteMouseClicked
+
+    private void tabelaMostraClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabelaMostraClienteKeyReleased
+        // TODO add your handling code here:
+        int indiceLinha = tabelaMostraCliente.getSelectedRow();
+
+        nomecliente.setText(tabelaMostraCliente.getValueAt(indiceLinha,0).toString());
+        cpf.setText(tabelaMostraCliente.getValueAt(indiceLinha,1).toString());
+        endereco.setText(tabelaMostraCliente.getValueAt(indiceLinha,2).toString());
+        telefone.setText(tabelaMostraCliente.getValueAt(indiceLinha,3).toString());
+    }//GEN-LAST:event_tabelaMostraClienteKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField campoCadCpfCliente;
-    private javax.swing.JTextField campoCadEnderecoCliente;
-    private javax.swing.JTextField campoCadNomeCliente;
-    private javax.swing.JTextField campoCadTelefoneCliente;
+    private javax.swing.JToggleButton botaoBuscaCliente;
+    private javax.swing.JTextField campoNomeBuscaCliente;
+    private javax.swing.JTextField cpf;
+    private javax.swing.JTextField endereco;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -244,9 +316,9 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JTextField nomecliente;
+    private javax.swing.JTable tabelaMostraCliente;
+    private javax.swing.JTextField telefone;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -13,8 +13,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,11 +25,12 @@ public class ProdutoDAO {
         PreparedStatement stmt = null;
         
         try {
-            stmt = (PreparedStatement) con.prepareStatement("INSERT INTO Produto (NomeProduto, PrecoVenda, PrecoCompra, QtdEstoque) VALUES (?,?,?,?)");
-            stmt.setString(1, p.getNomeProduto());
-            stmt.setFloat(2, p.getPrecoVenda());
-            stmt.setFloat(3, p.getPrecoCompra());
-            stmt.setInt(4, p.getQtdEstoque());
+            stmt = (PreparedStatement) con.prepareStatement("INSERT INTO Produto (idproduto, NomeProduto, PrecoVenda, PrecoCompra, QtdEstoque) VALUES (?,?,?,?,?)");
+            stmt.setInt(1, p.getCodProduto());
+            stmt.setString(2, p.getNomeProduto());
+            stmt.setFloat(3, p.getPrecoVenda());
+            stmt.setFloat(4, p.getPrecoCompra());
+            stmt.setInt(5, p.getQtdEstoque());
             
             stmt.executeUpdate();
             
@@ -53,12 +52,13 @@ public class ProdutoDAO {
         PreparedStatement stmt = null;
         
         try {
-            stmt = (PreparedStatement) con.prepareStatement("UPDATE Produto SET NomeProduto = ?, PrecoVenda = ?, PrecoCompra = ?, QtdEstoque = ? WHERE NomeProduto = ?");
-            stmt.setString(1, p.getNomeProduto());
-            stmt.setFloat(2, p.getPrecoVenda());
-            stmt.setFloat(3, p.getPrecoCompra());
-            stmt.setInt(4, p.getQtdEstoque());
-            stmt.setString(5, p.getNomeProduto());
+            stmt = (PreparedStatement) con.prepareStatement("UPDATE Produto SET idproduto = ?, NomeProduto = ?, PrecoVenda = ?, PrecoCompra = ?, QtdEstoque = ? WHERE NomeProduto = ?");
+            stmt.setInt(1, p.getCodProduto());
+            stmt.setString(2, p.getNomeProduto());
+            stmt.setFloat(3, p.getPrecoVenda());
+            stmt.setFloat(4, p.getPrecoCompra());
+            stmt.setInt(5, p.getQtdEstoque());
+            stmt.setString(6, p.getNomeProduto());
             
             stmt.executeUpdate();
             
