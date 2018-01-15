@@ -9,7 +9,10 @@ import br.com.classes.Cliente;
 import br.com.connection.ConnectionFactory;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -59,6 +62,69 @@ public class ClienteDAO {
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
         }
+    }
+    
+    public List<Cliente> read(){
+          Connection con = ConnectionFactory.getConnection();
+          PreparedStatement stmt = null;
+          ResultSet rs = null;
+          
+          List<Cliente> clientes = new ArrayList();
+          try {
+              stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM cliente");
+              rs = stmt.executeQuery();
+              
+              while (rs.next()) {
+                 Cliente c = new Cliente();
+                 
+                 c.setNomeCliente(rs.getString("nomecliente"));
+                 c.setCpfCliente(rs.getString("cpf"));
+                 c.setEnderecoCliente(rs.getString("endereco"));
+                 c.setTelefoneCliente(rs.getString("telefone"));
+                 
+                 clientes.add(c);
+                  
+              }
+              
+          } catch (SQLException e) {
+              JOptionPane.showMessageDialog(null, "Erro ao carregar dados.");
+          }finally{
+              ConnectionFactory.closeConnection(con, stmt, rs);
+          }
+          
+          return clientes;
+      }
+    
+    public List<Cliente> readForNome(String nome){
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+          ResultSet rs = null;
+          List<Cliente> clientes = new ArrayList<>();
+          
+        try {
+            stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM cliente WHERE nomecliente LIKE ?");
+            stmt.setString(1, "%"+nome+"%");   
+            rs = stmt.executeQuery();
+
+                        
+            while (rs.next()) {
+                Cliente c = new Cliente();
+                
+                 c.setNomeCliente(rs.getString("nomecliente"));
+                 c.setCpfCliente(rs.getString("cpf"));
+                 c.setEnderecoCliente(rs.getString("endereco"));
+                 c.setTelefoneCliente(rs.getString("telefone"));
+                 
+                 clientes.add(c);
+            }
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro de busca: "+ex);
+        }finally{
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+        
+        return clientes;
     }
     
 }

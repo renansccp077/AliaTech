@@ -82,11 +82,10 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="tabelaMostraCliente">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="0">
-                    <Column editable="false" title="ID" type="java.lang.Integer"/>
+                  <Table columnCount="4" rowCount="0">
                     <Column editable="false" title="Nome do cliente" type="java.lang.String"/>
                     <Column editable="false" title="CPF" type="java.lang.String"/>
                     <Column editable="false" title="Telefone" type="java.lang.String"/>
@@ -95,11 +94,6 @@
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="1" resizable="false">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                       <Title/>
                       <Editor/>
@@ -126,6 +120,10 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelaMostraClienteMouseClicked"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tabelaMostraClienteKeyReleased"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -149,8 +147,8 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="campoCadEnderecoCliente" alignment="0" pref="231" max="32767" attributes="0"/>
-                          <Component id="campoCadNomeCliente" alignment="0" max="32767" attributes="0"/>
+                          <Component id="endereco" alignment="0" pref="231" max="32767" attributes="0"/>
+                          <Component id="nomecliente" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -159,8 +157,8 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="campoCadTelefoneCliente" min="-2" pref="188" max="-2" attributes="0"/>
-                          <Component id="campoCadCpfCliente" min="-2" pref="219" max="-2" attributes="0"/>
+                          <Component id="telefone" min="-2" pref="188" max="-2" attributes="0"/>
+                          <Component id="cpf" min="-2" pref="219" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -171,17 +169,17 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="campoCadNomeCliente" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="nomecliente" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoCadCpfCliente" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="cpf" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoCadEnderecoCliente" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="endereco" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="campoCadTelefoneCliente" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="telefone" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -189,7 +187,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="campoCadEnderecoCliente">
+            <Component class="javax.swing.JTextField" name="endereco">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
@@ -207,7 +205,7 @@
                 <Property name="text" type="java.lang.String" value="Nome/Raz&#xe3;o social: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="campoCadCpfCliente">
+            <Component class="javax.swing.JTextField" name="cpf">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
@@ -225,9 +223,9 @@
                 <Property name="text" type="java.lang.String" value="Endere&#xe7;o: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="campoCadTelefoneCliente">
+            <Component class="javax.swing.JTextField" name="telefone">
             </Component>
-            <Component class="javax.swing.JTextField" name="campoCadNomeCliente">
+            <Component class="javax.swing.JTextField" name="nomecliente">
             </Component>
           </SubComponents>
         </Container>
@@ -247,9 +245,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" pref="277" max="-2" attributes="0"/>
+                      <Component id="campoNomeBuscaCliente" min="-2" pref="277" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoBuscaCliente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="178" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -260,8 +258,8 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jToggleButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="campoNomeBuscaCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaoBuscaCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -269,12 +267,12 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+            <Component class="javax.swing.JToggleButton" name="botaoBuscaCliente">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Buscar cliente"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoBuscaClienteActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
@@ -282,13 +280,13 @@
                 <Property name="text" type="java.lang.String" value="Nome do Cliente: "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
+            <Component class="javax.swing.JTextField" name="campoNomeBuscaCliente">
             </Component>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Apagar registro do cliente"/>
+            <Property name="text" type="java.lang.String" value="Excluir registro do cliente"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">

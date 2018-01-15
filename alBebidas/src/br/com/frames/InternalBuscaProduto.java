@@ -7,10 +7,6 @@ package br.com.frames;
 
 import br.com.DAO.ProdutoDAO;
 import br.com.classes.Produto;
-import br.com.connection.ConnectionFactory;
-import com.mysql.jdbc.PreparedStatement;
-import java.sql.Connection;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -46,8 +42,6 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
                 p.getPrecoCompra(),
                 p.getPrecoVenda(),
                 p.getQtdEstoque()
-            
-                
             });
         }
     }
@@ -151,7 +145,7 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
             }
         });
 
-        botaoApagarRegistro.setText("Apagar registro do produto");
+        botaoApagarRegistro.setText("Excluir registro do produto");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastrar Produto"));
 
@@ -321,6 +315,24 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
 
     private void botaoAlterarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarRegistroActionPerformed
         // TODO add your handling code here:
+        
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente alterar os dados do registro?",
+        title, JOptionPane.YES_NO_OPTION);
+        
+        if(resposta == JOptionPane.YES_OPTION){
+            Produto produto = new Produto();
+            ProdutoDAO dao = new ProdutoDAO();
+
+            produto.setCodProduto(Integer.parseInt(cod.getText()));
+            produto.setNomeProduto(nome.getText());
+            produto.setPrecoCompra(Float.parseFloat(vcompra.getText()));
+            produto.setPrecoVenda(Float.parseFloat(vvenda.getText()));
+            produto.setQtdEstoque(Integer.parseInt(qtd.getText()));
+
+            if(produto.validarProduto() == true){
+                dao.update(produto);
+            }
+        }
         
     }//GEN-LAST:event_botaoAlterarRegistroActionPerformed
 
