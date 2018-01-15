@@ -7,6 +7,11 @@ package br.com.frames;
 
 import br.com.DAO.ProdutoDAO;
 import br.com.classes.Produto;
+import br.com.connection.ConnectionFactory;
+import com.mysql.jdbc.PreparedStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -80,8 +85,8 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
         botaoBuscaProduto = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         campoNomeProdutoBusca = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        botaoAlterarRegistro = new javax.swing.JButton();
+        botaoApagarRegistro = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         vcompra = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -139,9 +144,14 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jButton2.setText("Alterar registro do produto");
+        botaoAlterarRegistro.setText("Alterar registro do produto");
+        botaoAlterarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAlterarRegistroActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Apagar registro do produto");
+        botaoApagarRegistro.setText("Apagar registro do produto");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastrar Produto"));
 
@@ -230,6 +240,11 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
                 tabelaMostraProdutoMouseClicked(evt);
             }
         });
+        tabelaMostraProduto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tabelaMostraProdutoKeyReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabelaMostraProduto);
         if (tabelaMostraProduto.getColumnModel().getColumnCount() > 0) {
             tabelaMostraProduto.getColumnModel().getColumn(4).setResizable(false);
@@ -244,9 +259,9 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(126, 126, 126)
-                        .addComponent(jButton2)
+                        .addComponent(botaoAlterarRegistro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(botaoApagarRegistro)
                         .addGap(105, 105, 105))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -264,8 +279,8 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoAlterarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoApagarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -293,13 +308,29 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_tabelaMostraProdutoMouseClicked
 
+    private void tabelaMostraProdutoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabelaMostraProdutoKeyReleased
+        // TODO add your handling code here:
+        int indiceLinha = tabelaMostraProduto.getSelectedRow();
+        
+        cod.setText(tabelaMostraProduto.getValueAt(indiceLinha,0).toString());
+        nome.setText(tabelaMostraProduto.getValueAt(indiceLinha,1).toString());
+        vcompra.setText(tabelaMostraProduto.getValueAt(indiceLinha,2).toString());
+        vvenda.setText(tabelaMostraProduto.getValueAt(indiceLinha,3).toString());
+        qtd.setText(tabelaMostraProduto.getValueAt(indiceLinha,4).toString());
+    }//GEN-LAST:event_tabelaMostraProdutoKeyReleased
+
+    private void botaoAlterarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarRegistroActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_botaoAlterarRegistroActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoAlterarRegistro;
+    private javax.swing.JButton botaoApagarRegistro;
     private javax.swing.JToggleButton botaoBuscaProduto;
     private javax.swing.JTextField campoNomeProdutoBusca;
     private javax.swing.JTextField cod;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
