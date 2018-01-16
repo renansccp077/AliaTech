@@ -320,6 +320,7 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
 
     private void botaoAlterarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarRegistroActionPerformed
         // TODO add your handling code here:
+         System.out.println("ligou");
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente alterar os dados do registro?",
         title, JOptionPane.YES_NO_OPTION);
         
@@ -342,6 +343,7 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
 
     private void botaoApagarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoApagarRegistroActionPerformed
         // TODO add your handling code here:
+       
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente alterar os dados do registro?",
         title, JOptionPane.YES_NO_OPTION);
         
