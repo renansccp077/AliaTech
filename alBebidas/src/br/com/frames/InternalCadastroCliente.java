@@ -56,6 +56,12 @@ public class InternalCadastroCliente extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Nome/Razão social: ");
 
+        campoCadCpfCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoCadCpfClienteActionPerformed(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Telefone: ");
 
@@ -181,14 +187,18 @@ public class InternalCadastroCliente extends javax.swing.JInternalFrame {
         cliente.setTelefoneCliente(campoCadTelefoneCliente.getText());
 
         cliente.validarCliente();
-        if(cliente.validarCliente() == true){
+        if(cliente.validarCliente()){
             dao.create(cliente);
-            campoCadNomeCliente.setText("");
+            /*campoCadNomeCliente.setText("");
             campoCadCpfCliente.setText("");
             campoCadEnderecoCliente.setText("");
-            campoCadTelefoneCliente.setText("");
+            campoCadTelefoneCliente.setText("");*/
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void campoCadCpfClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCadCpfClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoCadCpfClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

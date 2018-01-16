@@ -146,6 +146,11 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
         });
 
         botaoApagarRegistro.setText("Excluir registro do produto");
+        botaoApagarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoApagarRegistroActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastrar Produto"));
 
@@ -315,7 +320,6 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
 
     private void botaoAlterarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarRegistroActionPerformed
         // TODO add your handling code here:
-        
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente alterar os dados do registro?",
         title, JOptionPane.YES_NO_OPTION);
         
@@ -335,6 +339,27 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
         }
         
     }//GEN-LAST:event_botaoAlterarRegistroActionPerformed
+
+    private void botaoApagarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoApagarRegistroActionPerformed
+        // TODO add your handling code here:
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente alterar os dados do registro?",
+        title, JOptionPane.YES_NO_OPTION);
+        
+        if(resposta == JOptionPane.YES_OPTION){
+            Produto produto = new Produto();
+            ProdutoDAO dao = new ProdutoDAO();
+
+            produto.setCodProduto(Integer.parseInt(cod.getText()));
+            produto.setNomeProduto(nome.getText());
+            produto.setPrecoCompra(Float.parseFloat(vcompra.getText()));
+            produto.setPrecoVenda(Float.parseFloat(vvenda.getText()));
+            produto.setQtdEstoque(Integer.parseInt(qtd.getText()));
+
+            if(produto.validarProduto()){
+                dao.delete(produto);
+            }
+        }
+    }//GEN-LAST:event_botaoApagarRegistroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

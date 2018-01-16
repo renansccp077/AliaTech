@@ -94,9 +94,10 @@ public class UsuarioDAO {
         
         try {
             stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM usuario WHERE NomeUsuario = ? AND Senha = ?");
+            
             stmt.setString(1, login);
             stmt.setString(2, senha);
-            rs = stmt.executeQuery();
+            rs = stmt.executeQuery();   
             
             if(rs.next()){
                 check = true;

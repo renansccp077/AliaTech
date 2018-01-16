@@ -161,12 +161,16 @@ public class telaLogin extends javax.swing.JFrame {
     private void botaoEntrarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarLoginActionPerformed
         // TODO add your handling code here:
         UsuarioDAO dao = new UsuarioDAO();
+        try{
         if(dao.chekLogin(campoUsuarioLogin.getText(), campoSenhaLogin.getText())){
             telaInicial ti = new telaInicial();
             this.dispose();
             ti.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Usuario ou Senha Incorreta!");
+        }
+        }catch(Exception ex){
+            System.out.println("Erro: "+ex);
         }
         
         

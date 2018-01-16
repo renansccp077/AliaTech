@@ -5,6 +5,8 @@
  */
 package br.com.classes;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Renan
@@ -68,15 +70,35 @@ public class Produto {
     }
     
     public boolean validarProduto(){
+        return validaNomeProduto() && validaPrecoCompra() && validaPrecoVenda() && validaQtdProduto();
+    }
+    
+    public boolean validaNomeProduto(){
+        if(nomeProduto.length()<4 || nomeProduto.length()>20){
+            JOptionPane.showMessageDialog(null, "Digite um nome para o produto entre 4 e 20 caracteres!");
+            return false;
+        }         
         return true;
     }
-
-    public boolean validaNomeProduto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public boolean validaPrecoCompra(){
+        if(precoCompra <= 0){
+            return false;
+        }
+        return true;
     }
-
-
-    public boolean validaCodProduto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public boolean validaPrecoVenda(){
+        if(precoVenda <= 0 || precoVenda <= precoCompra){
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean validaQtdProduto(){
+        if(qtdEstoque < 0){
+            return false;
+        }
+        return true;
     }
 }

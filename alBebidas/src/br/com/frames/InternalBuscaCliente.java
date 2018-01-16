@@ -7,7 +7,10 @@
 package br.com.frames;
 
 import br.com.DAO.ClienteDAO;
+import br.com.DAO.ProdutoDAO;
 import br.com.classes.Cliente;
+import br.com.classes.Produto;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -141,6 +144,12 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Nome/Razão social: ");
 
+        cpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpfActionPerformed(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Telefone: ");
 
@@ -224,6 +233,11 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
         );
 
         jButton1.setText("Excluir registro do cliente");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Alterar registro do cliente");
 
@@ -299,6 +313,29 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
         endereco.setText(tabelaMostraCliente.getValueAt(indiceLinha,2).toString());
         telefone.setText(tabelaMostraCliente.getValueAt(indiceLinha,3).toString());
     }//GEN-LAST:event_tabelaMostraClienteKeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente alterar os dados do registro?",
+        title, JOptionPane.YES_NO_OPTION);
+        
+        if(resposta == JOptionPane.YES_OPTION){
+            Cliente c = new Cliente();
+            ClienteDAO dao = new ClienteDAO();
+
+            c.setNomeCliente(nomecliente.getText());
+            c.setCpfCliente(cpf.getText());
+            c.setTelefoneCliente(telefone.getText());
+            c.setEnderecoCliente(endereco.getText());
+
+            if(c.validarCliente() == true){
+                dao.delete(c);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cpfActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botaoBuscaCliente;

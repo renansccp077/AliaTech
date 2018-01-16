@@ -22,30 +22,30 @@ import javax.swing.JOptionPane;
 public class ClienteDAO {
 
     public void create(Cliente c) {
-        Connection con = ConnectionFactory.getConnection();
+       Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
-        String sql = "INSERT INTO cliente (nomecliente, cpfcliente, telefone, endereco) VALUES (?,?,?,?)";
+        
         try {
-            stmt = (PreparedStatement) con.prepareStatement(sql);
+            stmt = (PreparedStatement) con.prepareStatement("INSERT INTO Cliente (NomeCliente, cpf, telefone, endereco) VALUES (?,?,?,?)");
             stmt.setString(1, c.getNomeCliente());
             stmt.setString(2, c.getCpfCliente());
             stmt.setString(3, c.getTelefoneCliente());
-            stmt.setString(4, c.getEnderecoCliente());
-
+            stmt.setString(4, c.getEnderecoCliente());            
+            
             stmt.executeUpdate();
-
-            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+            
+            JOptionPane.showMessageDialog(null, "Salvo com Sucesso!");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao salvar: " + ex);
-        } finally {
+            JOptionPane.showMessageDialog(null, "Erro: " + ex);
+        }finally{
             ConnectionFactory.closeConnection(con, stmt);
         }
     }
-    
-    public void atualiza (Cliente c){
+
+    public void atualiza(Cliente c) {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
-        String sql = "UPDATE cliente SET NomeCliente = ?, Cpfcliente = ?, Telefone = ?, Endereco = ? WHERE Cpf = ?";
+        String sql = "UPDATE cliente SET NomeCliente = ?, Cpf = ?, Telefone = ?, Endereco = ? WHERE Cpf = ?";
         try {
             stmt = (PreparedStatement) con.prepareStatement(sql);
             stmt.setString(1, c.getNomeCliente());
@@ -63,68 +63,85 @@ public class ClienteDAO {
             ConnectionFactory.closeConnection(con, stmt);
         }
     }
-    
-    public List<Cliente> read(){
-          Connection con = ConnectionFactory.getConnection();
-          PreparedStatement stmt = null;
-          ResultSet rs = null;
-          
-          List<Cliente> clientes = new ArrayList();
-          try {
-              stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM cliente");
-              rs = stmt.executeQuery();
-              
-              while (rs.next()) {
-                 Cliente c = new Cliente();
-                 
-                 c.setNomeCliente(rs.getString("nomecliente"));
-                 c.setCpfCliente(rs.getString("cpf"));
-                 c.setEnderecoCliente(rs.getString("endereco"));
-                 c.setTelefoneCliente(rs.getString("telefone"));
-                 
-                 clientes.add(c);
-                  
-              }
-              
-          } catch (SQLException e) {
-              JOptionPane.showMessageDialog(null, "Erro ao carregar dados.");
-          }finally{
-              ConnectionFactory.closeConnection(con, stmt, rs);
-          }
-          
-          return clientes;
-      }
-    
-    public List<Cliente> readForNome(String nome){
+
+    public List<Cliente> read() {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
-          ResultSet rs = null;
-          List<Cliente> clientes = new ArrayList<>();
-          
+        ResultSet rs = null;
+
+        List<Cliente> clientes = new ArrayList();
         try {
-            stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM cliente WHERE nomecliente LIKE ?");
-            stmt.setString(1, "%"+nome+"%");   
+            stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM cliente");
             rs = stmt.executeQuery();
 
-                        
             while (rs.next()) {
                 Cliente c = new Cliente();
-                
-                 c.setNomeCliente(rs.getString("nomecliente"));
-                 c.setCpfCliente(rs.getString("cpf"));
-                 c.setEnderecoCliente(rs.getString("endereco"));
-                 c.setTelefoneCliente(rs.getString("telefone"));
-                 
-                 clientes.add(c);
+
+                c.setNomeCliente(rs.getString("nomecliente"));
+                c.setCpfCliente(rs.getString("cpf"));
+                c.setEnderecoCliente(rs.getString("endereco"));
+                c.setTelefoneCliente(rs.getString("telefone"));
+
+                clientes.add(c);
+
             }
-            
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro de busca: "+ex);
-        }finally{
-            ConnectionFactory.closeConnection(con, stmt);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao carregar dados.");
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
         }
-        
+
         return clientes;
     }
-    
+
+    public List<Cliente> readForNome(String nome) {
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Cliente> clientes = new ArrayList<>();
+
+        try {
+            stmt = (PreparedStatement) con.prepareStatement("SELECT * FROM cliente WHERE nomecliente LIKE ?");
+            stmt.setString(1, "%" + nome + "%");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Cliente c = new Cliente();
+
+                c.setNomeCliente(rs.getString("nomecliente"));
+                c.setCpfCliente(rs.getString("cpf"));
+                c.setEnderecoCliente(rs.getString("endereco"));
+                c.setTelefoneCliente(rs.getString("telefone"));
+
+                clientes.add(c);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro de busca: " + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+
+        return clientes;
+    }
+
+    public void delete(Cliente c) {
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = (PreparedStatement) con.prepareStatement("DELETE FROM Cliente WHERE NomeCliente = ?");
+            stmt.setString(1, c.getNomeCliente());
+
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Item Excluido com Sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao Fazer Exclusão: " + ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+    }
+
 }
