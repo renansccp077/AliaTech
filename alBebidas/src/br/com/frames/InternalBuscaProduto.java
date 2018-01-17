@@ -32,8 +32,6 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
         modelo.setNumRows(0);
         ProdutoDAO pd = new ProdutoDAO();
         
-        
-
         for(Produto p: pd.read()){
             
             modelo.addRow(new Object[]{
@@ -339,6 +337,7 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
             if(produto.validarProduto()){
                 System.out.println("Entrou");
                 dao.update(produto);
+                mostraProdutos();
             }
         }
         
@@ -362,6 +361,7 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
 
             if(produto.validarProduto()){
                 dao.delete(produto);
+                mostraProdutos();
             }
         }
     }//GEN-LAST:event_botaoApagarRegistroActionPerformed

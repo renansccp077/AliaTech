@@ -335,6 +335,7 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
 
             if(c.validarCliente() == true){
                 dao.delete(c);
+                mostraClientes();
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -359,6 +360,7 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
 
             if(c.validarCliente() == true){
                 dao.atualiza(c);
+                mostraClientes();
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
