@@ -135,6 +135,9 @@ public class InternalCadastroUsuario extends javax.swing.JInternalFrame {
         
         if(u.validarUsuario()){
             dao.create(u);
+            campoTextoCadUsuario.setText("");
+           campoSenhaCadUsuario.setText("");
+
         }else{
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuario, verifique os campos!");
         }

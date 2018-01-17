@@ -184,9 +184,12 @@ public class InternalCadastroProduto extends javax.swing.JInternalFrame {
         
         if(produto.validarProduto() == true){
             dao.create(produto);
-           // produto.setCodProduto(" ");
-           // produto.setNomeProduto("");
-           // produto.setPrecoCompra("");
+           
+           campoCodigoCadProduto.setText("");
+           campoNomeCadProduto.setText("");
+           campoPrecoCompraCadProduto.setText("");
+           campoPrecoVendaCadProduto.setText("");
+           campoQtdEntradaCadProduto.setText("");
             
             
             

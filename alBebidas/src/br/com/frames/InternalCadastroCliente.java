@@ -189,10 +189,11 @@ public class InternalCadastroCliente extends javax.swing.JInternalFrame {
         cliente.validarCliente();
         if(cliente.validarCliente()){
             dao.create(cliente);
-            /*campoCadNomeCliente.setText("");
-            campoCadCpfCliente.setText("");
-            campoCadEnderecoCliente.setText("");
-            campoCadTelefoneCliente.setText("");*/
+           campoCadNomeCliente.setText("");
+           campoCadCpfCliente.setText("");
+           campoCadEnderecoCliente.setText("");
+           campoCadTelefoneCliente.setText("");
+           
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
