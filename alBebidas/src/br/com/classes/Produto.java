@@ -75,7 +75,7 @@ public class Produto {
     
     public boolean validaNomeProduto(){
         if(nomeProduto.length()<4 || nomeProduto.length()>20){
-            JOptionPane.showMessageDialog(null, "Digite um nome para o produto entre 4 e 20 caracteres!");
+            JOptionPane.showMessageDialog(null, "O nome do produto deve conter entre 4 e 20 caracteres!", "Erro:", JOptionPane.ERROR_MESSAGE);
             return false;
         }         
         return true;
@@ -83,6 +83,7 @@ public class Produto {
     
     public boolean validaPrecoCompra(){
         if(precoCompra <= 0){
+            JOptionPane.showMessageDialog(null, "O preço de compra deve ser maior que 0!", "Erro:", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;
@@ -90,6 +91,7 @@ public class Produto {
     
     public boolean validaPrecoVenda(){
         if(precoVenda <= 0 || precoVenda <= precoCompra){
+            JOptionPane.showMessageDialog(null, "O preço de venda deve ser maior que o preço de compra!", "Erro:", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;
@@ -97,6 +99,7 @@ public class Produto {
     
     public boolean validaQtdProduto(){
         if(qtdEstoque < 0){
+            JOptionPane.showMessageDialog(null, "A quantidade de produtos deve ser maior ou igual à 0", "Erro:", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;

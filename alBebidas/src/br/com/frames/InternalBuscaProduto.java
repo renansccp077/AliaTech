@@ -166,6 +166,8 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Valor de compra: ");
 
+        cod.setEditable(false);
+
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Qtd. Estoque:");
 
@@ -320,7 +322,7 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
 
     private void botaoAlterarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlterarRegistroActionPerformed
         // TODO add your handling code here:
-         System.out.println("ligou");
+        System.out.println("ligou");
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente alterar os dados do registro?",
         title, JOptionPane.YES_NO_OPTION);
         
@@ -334,7 +336,8 @@ public class InternalBuscaProduto extends javax.swing.JInternalFrame {
             produto.setPrecoVenda(Float.parseFloat(vvenda.getText()));
             produto.setQtdEstoque(Integer.parseInt(qtd.getText()));
 
-            if(produto.validarProduto() == true){
+            if(produto.validarProduto()){
+                System.out.println("Entrou");
                 dao.update(produto);
             }
         }

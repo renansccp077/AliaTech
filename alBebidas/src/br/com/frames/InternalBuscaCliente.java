@@ -139,11 +139,12 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("CPF/CNPJ:");
+        jLabel2.setText("CPF:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Nome/Razão social: ");
 
+        cpf.setEditable(false);
         cpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cpfActionPerformed(evt);
@@ -240,6 +241,11 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
         });
 
         jButton2.setText("Alterar registro do cliente");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -315,7 +321,7 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tabelaMostraClienteKeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente alterar os dados do registro?",
+         int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir os dados do registro?",
         title, JOptionPane.YES_NO_OPTION);
         
         if(resposta == JOptionPane.YES_OPTION){
@@ -336,6 +342,26 @@ public class InternalBuscaCliente extends javax.swing.JInternalFrame {
     private void cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cpfActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente alterar os dados do registro?",
+        title, JOptionPane.YES_NO_OPTION);
+        
+        if(resposta == JOptionPane.YES_OPTION){
+            Cliente c = new Cliente();
+            ClienteDAO dao = new ClienteDAO();
+
+            c.setNomeCliente(nomecliente.getText());
+            c.setCpfCliente(cpf.getText());
+            c.setTelefoneCliente(telefone.getText());
+            c.setEnderecoCliente(endereco.getText());
+
+            if(c.validarCliente() == true){
+                dao.atualiza(c);
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botaoBuscaCliente;

@@ -5,6 +5,8 @@
  */
 package br.com.testes;
 
+import br.com.DAO.ClienteDAO;
+import br.com.classes.Cliente;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -14,13 +16,14 @@ import static org.junit.Assert.*;
  * @author francisco
  */
 public class ClienteDAOTest {
-    
-    public ClienteDAOTest() {
-    }
-    
+    Cliente c;
+    ClienteDAO dao;
     @Before
     public void setUp() {
+        c = new Cliente();
+        dao = new ClienteDAO();
     }
-
+    
+    
     
 }
