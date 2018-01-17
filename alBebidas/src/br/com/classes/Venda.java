@@ -12,12 +12,20 @@ import java.sql.Date;
  * @author Renan
  */
 public class Venda {
+    private int idVenda;
     private Date data;
     private int quantidade;
     private float valorTotal;
-    private String nomeUsuario;
-    private int idProduto;
-    private String cpfCliente;
+    private String nomeproduto;
+    private float precoUnitario;
+
+    public float getPrecoUnitario() {
+        return precoUnitario;
+    }
+
+    public void setPrecoUnitario(float precoUnitario) {
+        this.precoUnitario = precoUnitario;
+    }
 
     public Venda() {
     }
@@ -46,27 +54,13 @@ public class Venda {
         this.valorTotal = valorTotal;
     }
 
-    public String getNomeUsuario() {
-        return nomeUsuario;
+    public String getNomeproduto() {
+        return nomeproduto;
     }
 
-    public void setNomeUsuario(String nomeUsuario) {
-        this.nomeUsuario = nomeUsuario;
+    public void setNomeproduto(String nomeproduto) {
+        this.nomeproduto = nomeproduto;
     }
 
-    public int getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
-    }
-
-    public String getCpfCliente() {
-        return cpfCliente;
-    }
-
-    public void setCpfCliente(String cpfCliente) {
-        this.cpfCliente = cpfCliente;
-    }
+    
 }

@@ -6,7 +6,11 @@
 package br.com.frames;
 
 import br.com.DAO.ProdutoDAO;
+import br.com.DAO.VendaDAO;
 import br.com.classes.Produto;
+import br.com.classes.Venda;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -21,6 +25,8 @@ public class InternalVenda extends javax.swing.JInternalFrame {
     /**
      * Creates new form InternalVenda
      */
+    
+    List <Venda> venda = new ArrayList<>();
     public InternalVenda() {
         initComponents();
         DefaultTableModel modelo = (DefaultTableModel) tabelaMostraProduto2.getModel();
@@ -57,8 +63,8 @@ public class InternalVenda extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         campoNomeProduto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jToggleButton2 = new javax.swing.JToggleButton();
+        campoQtd = new javax.swing.JTextField();
+        botaoLancar = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaMostraProduto2 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -88,7 +94,12 @@ public class InternalVenda extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Quantidade:");
 
-        jToggleButton2.setText("Lançar");
+        botaoLancar.setText("Lançar");
+        botaoLancar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoLancarActionPerformed(evt);
+            }
+        });
 
         tabelaMostraProduto2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,9 +144,9 @@ public class InternalVenda extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(campoQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jToggleButton2)))
+                        .addComponent(botaoLancar)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -150,11 +161,11 @@ public class InternalVenda extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jToggleButton2)
+                            .addComponent(botaoLancar)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(campoQtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 70, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
@@ -232,6 +243,11 @@ public class InternalVenda extends javax.swing.JInternalFrame {
         );
 
         jToggleButton3.setText("Finalizar venda");
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton3ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Excluir selecionado");
 
@@ -282,10 +298,30 @@ public class InternalVenda extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_botaoBuscaProdutoActionPerformed
 
+    private void botaoLancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLancarActionPerformed
+        // TODO add your handling code here:
+        int indiceLinha = tabelaMostraProduto2.getSelectedRow();
+        
+        Venda v = new Venda();
+        v.setNomeproduto(tabelaMostraProduto2.getValueAt(indiceLinha,1).toString());
+        v.setPrecoUnitario(Float.parseFloat(tabelaMostraProduto2.getValueAt(indiceLinha,2).toString()));
+        v.setQuantidade(Integer.parseInt(campoQtd.getText()));
+        v.setValorTotal(v.getQuantidade()*v.getPrecoUnitario());
+        venda.add(v);
+    }//GEN-LAST:event_botaoLancarActionPerformed
+
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+                    // TODO add your handling code here:
+        VendaDAO dao = new VendaDAO();
+        dao.create(venda);
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botaoBuscaProduto;
+    private javax.swing.JToggleButton botaoLancar;
     private javax.swing.JTextField campoNomeProduto;
+    private javax.swing.JTextField campoQtd;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -297,11 +333,9 @@ public class InternalVenda extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JTable tabelaMostraProduto2;
     // End of variables declaration//GEN-END:variables

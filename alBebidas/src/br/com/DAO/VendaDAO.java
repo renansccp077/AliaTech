@@ -10,6 +10,7 @@ import br.com.connection.ConnectionFactory;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,26 +18,35 @@ import javax.swing.JOptionPane;
  * @author francisco
  */
 public class VendaDAO {
-    public void create(Venda v) {
-       Connection con = ConnectionFactory.getConnection();
+
+    int cod = 0;
+
+    public void create(List<Venda> v) {
+        Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
-        
-        try {
-            stmt = (PreparedStatement) con.prepareStatement("INSERT INTO Venda (DataVenda, quantidade, valorTotal, Usuario_NomeUsuario, Produto_idProduto, Cliente_Cpf) VALUES (?,?,?,?,?,?)");
-            stmt.setDate(1, v.getData());
-            stmt.setInt(2, v.getQuantidade());
-            stmt.setFloat(3, v.getValorTotal());
-            stmt.setString(4, v.getNomeUsuario());  
-            stmt.setInt(5, v.getIdProduto());
-            stmt.setString(6, v.getCpfCliente());
-            
-            stmt.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null, "Salvo com Sucesso!");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro: " + ex);
-        }finally{
-            ConnectionFactory.closeConnection(con, stmt);
+
+        for (int i = 0; i < v.size(); i++) {
+            try {
+                stmt = (PreparedStatement) con.prepareStatement("INSERT INTO Venda (idVenda, DataVenda, quantidade, valorTotal, nomeproduto,precounitario) VALUES (?,?,?,?,?,?)");
+                stmt.setInt(1, cod);
+                stmt.setDate(2, v.get(i).getData());
+                stmt.setInt(3, v.get(i).getQuantidade());
+                stmt.setFloat(4, v.get(i).getValorTotal());
+                stmt.setString(5, v.get(i).getNomeproduto());
+                stmt.setFloat(6, v.get(i).getPrecoUnitario());
+
+                stmt.executeUpdate();
+
+                JOptionPane.showMessageDialog(null, "Salvo com Sucesso!");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro: " + ex);
+            } finally {
+                ConnectionFactory.closeConnection(con, stmt);
+            }
+
         }
+
+        cod++;
+
     }
 }
