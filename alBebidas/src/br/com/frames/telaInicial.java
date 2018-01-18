@@ -77,6 +77,11 @@ public class telaInicial extends javax.swing.JFrame {
         jMenu3.setText("A.L Bebidas");
 
         jMenuItem4.setText("Balanço financeiro");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem4);
 
         jMenuItem5.setText("Funcionários");
@@ -235,6 +240,13 @@ public class telaInicial extends javax.swing.JFrame {
         venda.setLocation(100,10);
         venda.setVisible(true);
     }//GEN-LAST:event_menuItemVendaRealizarVendaActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        JInternalFrame balanco = new balancoFinanceiro();
+        painelInicial.add(balanco);
+        balanco.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
