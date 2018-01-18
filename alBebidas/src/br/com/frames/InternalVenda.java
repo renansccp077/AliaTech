@@ -258,6 +258,11 @@ public class InternalVenda extends javax.swing.JInternalFrame {
         });
 
         jButton1.setText("Excluir selecionado");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -335,6 +340,18 @@ public class InternalVenda extends javax.swing.JInternalFrame {
     private void campoQtdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoQtdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoQtdActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try{
+            int indiceLinha = mostraProdutos3.getSelectedRow();
+            venda.remove(indiceLinha);
+            carregaTabelaLancados();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Selecione uma linha para excluir!", "Erro:", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void carregaTabelaLancados(){
         DefaultTableModel modelo = (DefaultTableModel) mostraProdutos3.getModel();
