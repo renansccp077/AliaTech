@@ -11,6 +11,7 @@ import br.com.classes.Produto;
 import br.com.classes.Venda;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -27,6 +28,7 @@ public class InternalVenda extends javax.swing.JInternalFrame {
      */
     
     List <Venda> venda = new ArrayList<>();
+    int cod =0;
     public InternalVenda() {
         initComponents();
         DefaultTableModel modelo = (DefaultTableModel) tabelaMostraProduto2.getModel();
@@ -68,7 +70,7 @@ public class InternalVenda extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaMostraProduto2 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        mostraProdutos3 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
@@ -93,6 +95,12 @@ public class InternalVenda extends javax.swing.JInternalFrame {
         jLabel1.setText("Código do Produto:");
 
         jLabel2.setText("Quantidade:");
+
+        campoQtd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoQtdActionPerformed(evt);
+            }
+        });
 
         botaoLancar.setText("Lançar");
         botaoLancar.addActionListener(new java.awt.event.ActionListener() {
@@ -171,7 +179,7 @@ public class InternalVenda extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        mostraProdutos3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -194,7 +202,7 @@ public class InternalVenda extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(mostraProdutos3);
 
         jLabel3.setText("Total geral:");
 
@@ -300,22 +308,50 @@ public class InternalVenda extends javax.swing.JInternalFrame {
 
     private void botaoLancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLancarActionPerformed
         // TODO add your handling code here:
-        int indiceLinha = tabelaMostraProduto2.getSelectedRow();
         
-        Venda v = new Venda();
-        v.setNomeproduto(tabelaMostraProduto2.getValueAt(indiceLinha,1).toString());
-        v.setPrecoUnitario(Float.parseFloat(tabelaMostraProduto2.getValueAt(indiceLinha,2).toString()));
-        v.setQuantidade(Integer.parseInt(campoQtd.getText()));
-        v.setValorTotal(v.getQuantidade()*v.getPrecoUnitario());
-        venda.add(v);
+        try{
+            int indiceLinha = tabelaMostraProduto2.getSelectedRow();
+            Venda v = new Venda();
+            v.setNomeproduto(tabelaMostraProduto2.getValueAt(indiceLinha,1).toString());
+            v.setPrecoUnitario(Float.parseFloat(tabelaMostraProduto2.getValueAt(indiceLinha,2).toString()));
+            v.setQuantidade(Integer.parseInt(campoQtd.getText()));
+            v.setValorTotal(v.getQuantidade()*v.getPrecoUnitario());
+            venda.add(v);
+            carregaTabelaLancados();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Verifique todos os campos!", "Erro:", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_botaoLancarActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
-                    // TODO add your handling code here:
+       // TODO add your handling code here:
         VendaDAO dao = new VendaDAO();
         dao.create(venda);
+        cod++;
+        venda.clear();
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
+    private void campoQtdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoQtdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoQtdActionPerformed
+
+    public void carregaTabelaLancados(){
+        DefaultTableModel modelo = (DefaultTableModel) mostraProdutos3.getModel();
+        modelo.setNumRows(0);
+        VendaDAO dao = new VendaDAO();
+        List<Venda> vendas = new ArrayList<>();
+        vendas = venda;
+        for(Venda v: vendas){
+            
+            modelo.addRow(new Object[]{       
+                v.getNomeproduto(),
+                v.getPrecoUnitario(),
+                v.getQuantidade(),
+                v.getValorTotal()    
+            });
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botaoBuscaProduto;
@@ -332,11 +368,11 @@ public class InternalVenda extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JTable mostraProdutos3;
     private javax.swing.JTable tabelaMostraProduto2;
     // End of variables declaration//GEN-END:variables
 }
